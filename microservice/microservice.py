@@ -1,20 +1,21 @@
 from threading import Thread
 from decimal import Decimal
-from .config import (MQTT_PASSWORD, MQTT_USERNAME,
-                     MQTT_TOPIC, MQTT_PORT, MQTT_HOST)
+from config import Config
 import json
+import time
 import paho.mqtt.client as mqtt
 
-class MqttClient(Thread):
-    def __init__(self, timeout=None,temperature_threshold=None) -> None:
+
+class MqttClient:
+    def __init__(self, timeout=None, temperature_threshold=None) -> None:
         super(MqttClient, self).__init__()
-        self.client = mqtt.Client()
-        self.broker = MQTT_HOST
-        self.port = MQTT_PORT
+        self.client = mqtt.Client("blockchain")
+        self.host = Config.MQTT_HOST
+        self.port = int(Config.MQTT_PORT)
         self.timeout = timeout
-        self.topic = MQTT_TOPIC
-        self.username = MQTT_USERNAME
-        self.password = MQTT_PASSWORD
+        self.topic = Config.MQTT_TOPIC
+        self.username = Config.MQTT_USERNAME
+        self.password = Config.MQTT_PASSWORD
 
     #  run method override from Thread class
     def run(self):
@@ -24,29 +25,43 @@ class MqttClient(Thread):
         self.client.on_connect = self.on_connect
         self.client.on_message = self.on_message
         self.client.username_pw_set(
-            username=self.username, password=self.password)
-        self.client.connect(self.broker, self.port, self.timeout)
+            username=self.username,
+            password=self.password)
         self.client.loop_start()
+        self.client.connect(host=self.host,
+                            port=self.port,
+                            keepalive=self.timeout,
+                            bind_address='')
+        while not self.client.is_connected():
+            print("waiting for connection......")
+            time.sleep(1)
+        while self.client.is_connected():
+            pass
+
 
     # The callback for when a PUBLISH message is received from the server.
     def on_message(self, client, userdata, msg):
-        payload = Decimal(msg.payload.decode('utf-8'))
         topic: str = msg.topic.rsplit('/')[1]
-
+        payload = msg.payload.decode('utf-8')
         payload = json.loads(payload)
-        
-        temperature = payload.get('temperature')
-        humidity = payload.get('humidity')
-        current_time = payload.get('current_time')
-        device_id = payload.get('device_id')
+
+        temperature = payload.get('temperature',None)
+        humidity = payload.get('humidity',None)
+        current_time = payload.get('current_time',None)
+        device_id = payload.get('device_id',None)
 
         print(topic, payload)
 
     # The callback for when the client receives a CONNACK response from the server.
     def on_connect(self, client, userdata, flags, rc):
+        if rc == 0:
+            print("Connected")
+        else:
+            print("Bad connection returned code=", rc)
         #  Subscribe to a list of topics using a lock to guarantee that a topic is only subscribed once
         client.subscribe(self.topic)
 
 
 if __name__ == "__main__":
-    MqttClient(timeout=60,temperature_threshold=40).start()
+    mqtt_client = MqttClient(timeout=60, temperature_threshold=40)
+    mqtt_client.run()
