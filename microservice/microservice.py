@@ -1,10 +1,9 @@
-from threading import Thread
 from decimal import Decimal
 from config import Config
 import json
 import time
 import paho.mqtt.client as mqtt
-
+import requests
 
 class MqttClient:
     def __init__(self, timeout=None, temperature_threshold=None) -> None:
@@ -38,17 +37,35 @@ class MqttClient:
         while self.client.is_connected():
             pass
 
-
     # The callback for when a PUBLISH message is received from the server.
     def on_message(self, client, userdata, msg):
-        device_id: str = msg.topic.rsplit('/')[1]
+        device_id: str = msg.topic.rsplit('/')[2]
         payload = msg.payload.decode('utf-8')
         payload = json.loads(payload)
 
-        temperature = payload.get('temperature',None)
-        humidity = payload.get('humidity',None)
-        current_time = payload.get('current_time',None)
-        print(f"\nReceived readings from device {device_id} on {current_time} on topic {msg.topic}")
+        temperature = Decimal(payload.get('temperature', None))
+        humidity = Decimal(payload.get('humidity', None))
+        current_time = payload.get('current_time', None)
+
+        print(
+            f"\nReceived readings from device {device_id} on {current_time} on topic {msg.topic}")
+        # getting device information and thresholds for temperature and humidity
+        temperature_threshold = 15
+        ideal_temperature_val = -40
+
+        ideal_humidity_val = 20
+        humidity_threshold = 20
+
+        if abs(temperature-ideal_temperature_val) > temperature_threshold or abs(humidity-ideal_humidity_val) > humidity_threshold:
+            # Code for faulty readings
+            data = {
+                "device_id":device_id,
+                "temperature":temperature,
+                "humidity":humidity,
+                "at_time":current_time,
+            }
+            # requests.post(Config.BACKEND_HOST,data=data)
+            print(f"\nSending faulty readings to the backend which makes a transaction on the blockhain network for device {device_id}")
 
     # The callback for when the client receives a CONNACK response from the server.
     def on_connect(self, client, userdata, flags, rc):
@@ -61,5 +78,5 @@ class MqttClient:
 
 
 if __name__ == "__main__":
-    mqtt_client = MqttClient(timeout=60, temperature_threshold=40)
+    mqtt_client = MqttClient(timeout=60)
     mqtt_client.run()

@@ -14,3 +14,4 @@ class Config:
     MQTT_TOPIC = get_var("MQTT_TOPIC","/readings/#")
     MQTT_PORT  = get_var("MQTT_PORT",3306)
     MQTT_HOST = get_var("MQTT_HOST")
+    BACKEND_HOST = get_var("BACKEND_HOST")
