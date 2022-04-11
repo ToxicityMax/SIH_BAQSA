@@ -1,10 +1,9 @@
 from threading import Thread
-
-import paho.mqtt.client as mqtt
-
+from decimal import Decimal
 from .config import (MQTT_PASSWORD, MQTT_USERNAME,
                      MQTT_TOPIC, MQTT_PORT, MQTT_HOST)
-
+import json
+import paho.mqtt.client as mqtt
 
 class MqttClient(Thread):
     def __init__(self, timeout) -> None:
@@ -31,11 +30,20 @@ class MqttClient(Thread):
 
     # The callback for when a PUBLISH message is received from the server.
     def on_message(self, client, userdata, msg):
-        from .utils import update_weight
-        from decimal import Decimal
         payload = Decimal(msg.payload.decode('utf-8'))
-        topic: str = msg.topic.rsplit('/')[2]
-        update_weight(topic, payload)
+        topic: str = msg.topic.rsplit('/')[1]
+
+        payload = json.loads(payload)
+
+        import pdb 
+        pdb.set_trace()
+# {
+#     "device_id":"",
+#     "temperature":"",
+#     "humidity":"",
+#     "current_time":"",
+# }
+        print(topic, payload)
 
     # The callback for when the client receives a CONNACK response from the server.
     def on_connect(self, client, userdata, flags, rc):
