@@ -46,7 +46,7 @@ class MqttClient(Thread):
     def on_connect(self, client, userdata, flags, rc):
         #  Subscribe to a list of topics using a lock to guarantee that a topic is only subscribed once
         client.subscribe(self.topic)
-1
+
 
 if __name__ == "__main__":
     MqttClient(timeout=60,temperature_threshold=40).start()
