@@ -6,7 +6,7 @@ import json
 import paho.mqtt.client as mqtt
 
 class MqttClient(Thread):
-    def __init__(self, timeout) -> None:
+    def __init__(self, timeout=None,temperature_threshold=None) -> None:
         super(MqttClient, self).__init__()
         self.client = mqtt.Client()
         self.broker = MQTT_HOST
@@ -34,22 +34,19 @@ class MqttClient(Thread):
         topic: str = msg.topic.rsplit('/')[1]
 
         payload = json.loads(payload)
+        
+        temperature = payload.get('temperature')
+        humidity = payload.get('humidity')
+        current_time = payload.get('current_time')
+        device_id = payload.get('device_id')
 
-        import pdb 
-        pdb.set_trace()
-# {
-#     "device_id":"",
-#     "temperature":"",
-#     "humidity":"",
-#     "current_time":"",
-# }
         print(topic, payload)
 
     # The callback for when the client receives a CONNACK response from the server.
     def on_connect(self, client, userdata, flags, rc):
         #  Subscribe to a list of topics using a lock to guarantee that a topic is only subscribed once
         client.subscribe(self.topic)
-
+1
 
 if __name__ == "__main__":
-    MqttClient(60).start()
+    MqttClient(timeout=60,temperature_threshold=40).start()
