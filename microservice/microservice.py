@@ -41,21 +41,19 @@ class MqttClient:
 
     # The callback for when a PUBLISH message is received from the server.
     def on_message(self, client, userdata, msg):
-        topic: str = msg.topic.rsplit('/')[1]
+        device_id: str = msg.topic.rsplit('/')[1]
         payload = msg.payload.decode('utf-8')
         payload = json.loads(payload)
 
         temperature = payload.get('temperature',None)
         humidity = payload.get('humidity',None)
         current_time = payload.get('current_time',None)
-        device_id = payload.get('device_id',None)
-
-        print(topic, payload)
+        print(f"\nReceived readings from device {device_id} on {current_time} on topic {msg.topic}")
 
     # The callback for when the client receives a CONNACK response from the server.
     def on_connect(self, client, userdata, flags, rc):
         if rc == 0:
-            print("Connected")
+            print("Connection successfull!")
         else:
             print("Bad connection returned code=", rc)
         #  Subscribe to a list of topics using a lock to guarantee that a topic is only subscribed once
