@@ -1,0 +1,500 @@
+1649659463: mosquitto version 2.0.14 starting
+1649659463: Config loaded from /mosquitto/config/mosquitto.conf.
+1649659463: Opening ipv4 listen socket on port 1883.
+1649659463: Opening ipv6 listen socket on port 1883.
+1649659463: mosquitto version 2.0.14 running
+1649659520: New connection from 172.17.0.1:59304 on port 1883.
+1649659520: Client auto-B4E118EE-2DD5-DE92-B3F1-4404C94E8818 disconnected, not authorised.
+1649659528: New connection from 172.17.0.1:59306 on port 1883.
+1649659528: New client connected from 172.17.0.1:59306 as auto-4A1E4F51-AE85-1812-D13A-4F01B21C65F4 (p2, c1, k60, u'admin').
+1649659613: New connection from 172.17.0.1:59308 on port 1883.
+1649659613: New client connected from 172.17.0.1:59308 as auto-D660D5FE-9085-42CE-2287-DCC7390BB8A4 (p2, c1, k60).
+1649659613: Client auto-D660D5FE-9085-42CE-2287-DCC7390BB8A4 disconnected.
+1649659617: Client auto-4A1E4F51-AE85-1812-D13A-4F01B21C65F4 disconnected.
+1649659619: New connection from 172.17.0.1:59310 on port 1883.
+1649659619: New client connected from 172.17.0.1:59310 as auto-519C0C7B-99ED-DE60-BFE8-80BFB57AB525 (p2, c1, k60, u'admin').
+1649659621: New connection from 172.17.0.1:59312 on port 1883.
+1649659621: New client connected from 172.17.0.1:59312 as auto-D75C50F3-832D-4F3A-1ABB-94E1DF2FDE8C (p2, c1, k60).
+1649659621: Client auto-D75C50F3-832D-4F3A-1ABB-94E1DF2FDE8C disconnected.
+1649659848: New connection from 172.17.0.1:59314 on port 1883.
+1649659848: Client auto-BC2AD2A2-B0D4-51D8-BE63-959EDFA2EA0E disconnected, not authorised.
+1649659994: New connection from 172.17.0.1:59316 on port 1883.
+1649659994: Client auto-FEF8A8CD-AFDA-BA76-CE30-67C54BB4B90D disconnected, not authorised.
+1649660068: New connection from 172.17.0.1:59318 on port 1883.
+1649660068: Client auto-F4957ED1-641A-6A06-5C48-4D939735F6BF disconnected, not authorised.
+1649660069: New connection from 172.17.0.1:59320 on port 1883.
+1649660069: Client auto-22BD7E97-615E-69DF-042F-03124A9BF0D3 disconnected, not authorised.
+1649660070: New connection from 172.17.0.1:59322 on port 1883.
+1649660070: Client auto-BA2C04CA-720C-B1AF-32C9-37F9196383AA disconnected, not authorised.
+1649660070: New connection from 172.17.0.1:59324 on port 1883.
+1649660070: Client auto-BF77F781-9165-EA6D-0998-89409C75F90B disconnected, not authorised.
+1649660070: New connection from 172.17.0.1:59326 on port 1883.
+1649660070: Client auto-F362C5A0-091C-7B6D-62EB-3DD85922627F disconnected, not authorised.
+1649660070: New connection from 172.17.0.1:59328 on port 1883.
+1649660070: Client auto-C4A5B977-0777-2E17-781C-BFD768D830A2 disconnected, not authorised.
+1649660179: New connection from 172.17.0.1:59332 on port 1883.
+1649660179: Client auto-E4572600-CD09-1930-41FA-2FCA129639C9 disconnected, not authorised.
+1649660199: New connection from 172.17.0.1:59334 on port 1883.
+1649660199: Client auto-36264F6A-234A-0311-9842-A4B3871121EA disconnected, not authorised.
+1649660209: New connection from 172.17.0.1:59336 on port 1883.
+1649660209: Client auto-451E1043-839B-4617-3D50-5AF2CADB7E28 disconnected, not authorised.
+1649660212: New connection from 172.17.0.1:59338 on port 1883.
+1649660212: Client auto-2954EDA2-51BE-3541-879E-4114A268ACB8 disconnected, not authorised.
+1649660225: New connection from 172.17.0.1:59340 on port 1883.
+1649660225: Client auto-1CD4212C-CBAE-6EC5-4DF2-0ECD3BAB9950 disconnected, not authorised.
+1649660253: New connection from 172.17.0.1:59344 on port 1883.
+1649660253: Client auto-A6CB5298-7BED-ECD8-8E71-08BE0772A111 disconnected, not authorised.
+1649660268: New connection from 172.17.0.1:59346 on port 1883.
+1649660268: Client auto-DF8796CC-3145-EBDC-1F6D-DC040ECFEDE6 disconnected, not authorised.
+1649660280: New connection from 172.17.0.1:59348 on port 1883.
+1649660280: Client auto-6D47FDB9-3A86-505D-4899-017C8D81BF2B disconnected, not authorised.
+1649660292: New connection from 172.17.0.1:59350 on port 1883.
+1649660292: Client auto-60676DD2-690C-D549-89A3-DF1B533DCA5E disconnected, not authorised.
+1649660305: New connection from 172.17.0.1:59352 on port 1883.
+1649660305: Client auto-8F9A7430-8BF4-DDC8-DEA2-149DF6BC52D3 disconnected, not authorised.
+1649660334: New connection from 172.17.0.1:59356 on port 1883.
+1649660334: Client auto-1AA86B25-C38C-DCF7-029F-08AAC49188C7 disconnected, not authorised.
+1649660348: New connection from 172.17.0.1:59358 on port 1883.
+1649660348: New client connected from 172.17.0.1:59358 as auto-1EA649B2-31B4-AA64-7E50-C7DC49E206E3 (p2, c1, k60, u'admin').
+1649660348: Client auto-1EA649B2-31B4-AA64-7E50-C7DC49E206E3 closed its connection.
+1649660350: New connection from 172.17.0.1:59360 on port 1883.
+1649660350: New client connected from 172.17.0.1:59360 as auto-824549EE-B78D-C968-B47E-78F342D6DB61 (p2, c1, k60, u'admin').
+1649660350: Client auto-824549EE-B78D-C968-B47E-78F342D6DB61 closed its connection.
+1649660362: New connection from 172.17.0.1:59364 on port 1883.
+1649660362: New client connected from 172.17.0.1:59364 as auto-1CE1AFF8-8B94-E860-ED6F-F4740D019007 (p2, c1, k60, u'admin').
+1649660362: Client auto-1CE1AFF8-8B94-E860-ED6F-F4740D019007 closed its connection.
+1649660386: New connection from 172.17.0.1:59366 on port 1883.
+1649660386: New client connected from 172.17.0.1:59366 as auto-A3828830-CE7D-7D91-9C85-C71ED955F549 (p2, c1, k60, u'admin').
+1649660386: Client auto-A3828830-CE7D-7D91-9C85-C71ED955F549 closed its connection.
+1649660392: Client auto-519C0C7B-99ED-DE60-BFE8-80BFB57AB525 disconnected.
+1649660396: New connection from 172.17.0.1:59368 on port 1883.
+1649660396: New client connected from 172.17.0.1:59368 as auto-8AA04380-BFFF-D0C5-2464-D7DCFF46A0E8 (p2, c1, k60, u'admin').
+1649660397: New connection from 172.17.0.1:59370 on port 1883.
+1649660397: New client connected from 172.17.0.1:59370 as auto-784C2D6A-2236-9174-C828-3C44D148CE93 (p2, c1, k60).
+1649660397: Client auto-784C2D6A-2236-9174-C828-3C44D148CE93 disconnected.
+1649660415: New connection from 172.17.0.1:59372 on port 1883.
+1649660415: New client connected from 172.17.0.1:59372 as auto-BB0D95F7-4D18-8F1B-916E-C4418D7A17E8 (p2, c1, k60, u'admin').
+1649660415: Client auto-BB0D95F7-4D18-8F1B-916E-C4418D7A17E8 closed its connection.
+1649660437: Client auto-8AA04380-BFFF-D0C5-2464-D7DCFF46A0E8 disconnected.
+1649660444: New connection from 172.17.0.1:59374 on port 1883.
+1649660444: New client connected from 172.17.0.1:59374 as auto-BD263FDA-4DA6-3E35-A3DE-1B93317F9C9E (p2, c1, k60, u'admin').
+1649660448: New connection from 172.17.0.1:59376 on port 1883.
+1649660448: New client connected from 172.17.0.1:59376 as auto-B18BE9B4-EA3D-8BEF-58D8-7C28FE191DB2 (p2, c1, k60).
+1649660448: Client auto-B18BE9B4-EA3D-8BEF-58D8-7C28FE191DB2 disconnected.
+1649660454: Client auto-BD263FDA-4DA6-3E35-A3DE-1B93317F9C9E disconnected.
+1649660462: New connection from 172.17.0.1:59378 on port 1883.
+1649660462: New client connected from 172.17.0.1:59378 as auto-54CFDDE4-E824-7E59-D723-2398FE3CBF1D (p2, c1, k60, u'admin').
+1649660464: New connection from 172.17.0.1:59380 on port 1883.
+1649660464: New client connected from 172.17.0.1:59380 as auto-29D3E5BF-67F7-D413-18F9-7A6EAAB2BA2E (p2, c1, k60).
+1649660464: Client auto-29D3E5BF-67F7-D413-18F9-7A6EAAB2BA2E disconnected.
+1649660478: New connection from 172.17.0.1:59382 on port 1883.
+1649660478: New client connected from 172.17.0.1:59382 as auto-1EE09B24-3CDA-0172-25FC-8AAA9B61E445 (p2, c1, k60).
+1649660478: Client auto-1EE09B24-3CDA-0172-25FC-8AAA9B61E445 disconnected.
+1649660482: New connection from 172.17.0.1:59384 on port 1883.
+1649660482: New client connected from 172.17.0.1:59384 as auto-A64B4B75-A334-A972-3B2F-E69176FCADED (p2, c1, k60).
+1649660482: Client auto-A64B4B75-A334-A972-3B2F-E69176FCADED disconnected.
+1649660483: New connection from 172.17.0.1:59386 on port 1883.
+1649660483: New client connected from 172.17.0.1:59386 as auto-4483A645-A825-8126-182F-87A486EA7F4E (p2, c1, k60).
+1649660483: Client auto-4483A645-A825-8126-182F-87A486EA7F4E disconnected.
+1649660483: New connection from 172.17.0.1:59388 on port 1883.
+1649660483: New client connected from 172.17.0.1:59388 as auto-454FFFFA-6E97-98B9-ED7A-8E747BD800F4 (p2, c1, k60).
+1649660483: Client auto-454FFFFA-6E97-98B9-ED7A-8E747BD800F4 disconnected.
+1649660484: New connection from 172.17.0.1:59390 on port 1883.
+1649660484: New client connected from 172.17.0.1:59390 as auto-04B5CD6A-12DB-572A-E7BD-21B50E2C641F (p2, c1, k60).
+1649660484: Client auto-04B5CD6A-12DB-572A-E7BD-21B50E2C641F disconnected.
+1649660484: New connection from 172.17.0.1:59392 on port 1883.
+1649660484: New client connected from 172.17.0.1:59392 as auto-D6C31416-8878-D9DA-320B-0E04F1384987 (p2, c1, k60).
+1649660484: Client auto-D6C31416-8878-D9DA-320B-0E04F1384987 disconnected.
+1649660489: New connection from 172.17.0.1:59394 on port 1883.
+1649660489: New client connected from 172.17.0.1:59394 as auto-512303A6-36AE-2B05-7DF6-45B12193DB06 (p2, c1, k60).
+1649660489: Client auto-512303A6-36AE-2B05-7DF6-45B12193DB06 disconnected.
+1649660535: New connection from 172.17.0.1:59396 on port 1883.
+1649660535: New client connected from 172.17.0.1:59396 as auto-B25FB1AA-6672-69D4-7D09-1E9E7DCCF6AB (p2, c1, k60, u'admin').
+1649660535: Client auto-B25FB1AA-6672-69D4-7D09-1E9E7DCCF6AB closed its connection.
+1649660536: New connection from 172.17.0.1:59398 on port 1883.
+1649660536: New client connected from 172.17.0.1:59398 as auto-35FF684B-5057-8E69-2978-5C336BB1C71E (p2, c1, k60, u'admin').
+1649660536: Client auto-35FF684B-5057-8E69-2978-5C336BB1C71E closed its connection.
+1649660536: New connection from 172.17.0.1:59400 on port 1883.
+1649660536: New client connected from 172.17.0.1:59400 as auto-D3E850DF-9EBF-E499-AEFD-3D376BC96E50 (p2, c1, k60, u'admin').
+1649660536: Client auto-D3E850DF-9EBF-E499-AEFD-3D376BC96E50 closed its connection.
+1649660537: New connection from 172.17.0.1:59402 on port 1883.
+1649660537: New client connected from 172.17.0.1:59402 as auto-8A8E7499-BCD1-4B7B-86AF-C6D93F607726 (p2, c1, k60, u'admin').
+1649660537: Client auto-8A8E7499-BCD1-4B7B-86AF-C6D93F607726 closed its connection.
+1649660539: New connection from 172.17.0.1:59404 on port 1883.
+1649660539: New client connected from 172.17.0.1:59404 as auto-7BC49252-4430-8E7F-9353-1AF3EC6D2ED4 (p2, c1, k60, u'admin').
+1649660539: Client auto-7BC49252-4430-8E7F-9353-1AF3EC6D2ED4 closed its connection.
+1649660574: New connection from 172.17.0.1:59406 on port 1883.
+1649660574: New client connected from 172.17.0.1:59406 as auto-B5A7CCB1-C5C4-EF80-1404-7366532199FB (p2, c1, k60, u'admin').
+1649660574: Client auto-B5A7CCB1-C5C4-EF80-1404-7366532199FB closed its connection.
+1649660582: New connection from 172.17.0.1:59408 on port 1883.
+1649660582: New client connected from 172.17.0.1:59408 as auto-75C0785F-D0CD-B4E4-3A02-B281DC093D28 (p2, c1, k60, u'admin').
+1649660582: Client auto-75C0785F-D0CD-B4E4-3A02-B281DC093D28 closed its connection.
+1649660617: New connection from 172.17.0.1:59410 on port 1883.
+1649660617: New client connected from 172.17.0.1:59410 as auto-E509262E-BE42-0DC9-BC69-6F981B12F16E (p2, c1, k60, u'admin').
+1649660617: Client auto-E509262E-BE42-0DC9-BC69-6F981B12F16E closed its connection.
+1649660618: New connection from 172.17.0.1:59412 on port 1883.
+1649660618: New client connected from 172.17.0.1:59412 as auto-B898CD79-C09A-5154-2EE4-D27AF708780B (p2, c1, k60, u'admin').
+1649660618: Client auto-B898CD79-C09A-5154-2EE4-D27AF708780B closed its connection.
+1649660619: New connection from 172.17.0.1:59414 on port 1883.
+1649660619: New client connected from 172.17.0.1:59414 as auto-025344AA-076A-1941-FECD-F295B8D93BE2 (p2, c1, k60, u'admin').
+1649660619: Client auto-025344AA-076A-1941-FECD-F295B8D93BE2 closed its connection.
+1649660619: New connection from 172.17.0.1:59416 on port 1883.
+1649660619: New client connected from 172.17.0.1:59416 as auto-BDE5408F-10B4-DF41-E554-7B72469A81C2 (p2, c1, k60, u'admin').
+1649660619: Client auto-BDE5408F-10B4-DF41-E554-7B72469A81C2 closed its connection.
+1649660620: New connection from 172.17.0.1:59418 on port 1883.
+1649660620: New client connected from 172.17.0.1:59418 as auto-683341A4-5F2F-D1E6-A363-C9674FC34B93 (p2, c1, k60, u'admin').
+1649660620: Client auto-683341A4-5F2F-D1E6-A363-C9674FC34B93 closed its connection.
+1649660620: New connection from 172.17.0.1:59420 on port 1883.
+1649660620: New client connected from 172.17.0.1:59420 as auto-D6A2914C-AFBA-0449-DB57-2A695AAF4788 (p2, c1, k60, u'admin').
+1649660620: Client auto-D6A2914C-AFBA-0449-DB57-2A695AAF4788 closed its connection.
+1649660622: New connection from 172.17.0.1:59422 on port 1883.
+1649660622: New client connected from 172.17.0.1:59422 as auto-76546D54-882B-5D98-4463-FED91D162580 (p2, c1, k60, u'admin').
+1649660622: Client auto-76546D54-882B-5D98-4463-FED91D162580 closed its connection.
+1649660764: New connection from 172.17.0.1:59424 on port 1883.
+1649660764: New client connected from 172.17.0.1:59424 as auto-44328A5A-1573-4905-9F5C-288CAABB5683 (p2, c1, k60, u'admin').
+1649660764: Client auto-44328A5A-1573-4905-9F5C-288CAABB5683 closed its connection.
+1649660805: New connection from 172.17.0.1:59426 on port 1883.
+1649660805: New client connected from 172.17.0.1:59426 as auto-F6AAF1DE-9082-1898-F03A-98D9198D6E97 (p2, c1, k60, u'admin').
+1649660805: Client auto-F6AAF1DE-9082-1898-F03A-98D9198D6E97 closed its connection.
+1649660805: New connection from 172.17.0.1:59428 on port 1883.
+1649660805: Client <unknown> closed its connection.
+1649660805: New connection from 172.17.0.1:59430 on port 1883.
+1649660805: Client <unknown> closed its connection.
+1649660805: New connection from 172.17.0.1:59432 on port 1883.
+1649660805: Client <unknown> closed its connection.
+1649660874: New connection from 172.17.0.1:59434 on port 1883.
+1649660874: New client connected from 172.17.0.1:59434 as auto-6169FC2E-FC28-AC85-5243-BC79A5294107 (p2, c1, k60, u'admin').
+1649660874: Client auto-6169FC2E-FC28-AC85-5243-BC79A5294107 closed its connection.
+1649660874: New connection from 172.17.0.1:59436 on port 1883.
+1649660874: Client <unknown> closed its connection.
+1649660874: New connection from 172.17.0.1:59438 on port 1883.
+1649660874: Client <unknown> closed its connection.
+1649660874: New connection from 172.17.0.1:59440 on port 1883.
+1649660874: Client <unknown> closed its connection.
+1649660879: New connection from 172.17.0.1:59442 on port 1883.
+1649660879: New client connected from 172.17.0.1:59442 as auto-E6641364-F991-8E19-3624-986BE38933DE (p2, c1, k60, u'admin').
+1649660879: Client auto-E6641364-F991-8E19-3624-986BE38933DE closed its connection.
+1649660963: New connection from 172.17.0.1:59444 on port 1883.
+1649660963: New client connected from 172.17.0.1:59444 as blockchain (p2, c1, k60, u'admin').
+1649660963: Client blockchain closed its connection.
+1649660964: New connection from 172.17.0.1:59446 on port 1883.
+1649660964: New client connected from 172.17.0.1:59446 as blockchain (p2, c1, k60, u'admin').
+1649660964: Client blockchain closed its connection.
+1649660964: New connection from 172.17.0.1:59448 on port 1883.
+1649660964: New client connected from 172.17.0.1:59448 as blockchain (p2, c1, k60, u'admin').
+1649660964: Client blockchain closed its connection.
+1649660964: New connection from 172.17.0.1:59450 on port 1883.
+1649660964: New client connected from 172.17.0.1:59450 as blockchain (p2, c1, k60, u'admin').
+1649660964: Client blockchain closed its connection.
+1649660964: New connection from 172.17.0.1:59452 on port 1883.
+1649660964: New client connected from 172.17.0.1:59452 as blockchain (p2, c1, k60, u'admin').
+1649660964: Client blockchain closed its connection.
+1649660964: New connection from 172.17.0.1:59454 on port 1883.
+1649660964: New client connected from 172.17.0.1:59454 as blockchain (p2, c1, k60, u'admin').
+1649660964: Client blockchain closed its connection.
+1649661130: New connection from 172.17.0.1:59456 on port 1883.
+1649661131: Client <unknown> closed its connection.
+1649661131: New connection from 172.17.0.1:59458 on port 1883.
+1649661131: New client connected from 172.17.0.1:59458 as blockchain (p2, c1, k60, u'admin').
+1649661135: Client blockchain closed its connection.
+1649661139: New connection from 172.17.0.1:59460 on port 1883.
+1649661140: Client <unknown> closed its connection.
+1649661140: New connection from 172.17.0.1:59462 on port 1883.
+1649661140: New client connected from 172.17.0.1:59462 as blockchain (p2, c1, k60, u'admin').
+1649661141: New connection from 172.17.0.1:59464 on port 1883.
+1649661141: New client connected from 172.17.0.1:59464 as auto-95396E22-F66A-FD3A-8EB8-9D1CEC0F81C6 (p2, c1, k60).
+1649661141: Client auto-95396E22-F66A-FD3A-8EB8-9D1CEC0F81C6 disconnected.
+1649661144: Client blockchain closed its connection.
+1649661153: New connection from 172.17.0.1:59466 on port 1883.
+1649661154: Client <unknown> closed its connection.
+1649661154: New connection from 172.17.0.1:59468 on port 1883.
+1649661154: New client connected from 172.17.0.1:59468 as blockchain (p2, c1, k60, u'admin').
+1649661154: New connection from 172.17.0.1:59470 on port 1883.
+1649661154: New client connected from 172.17.0.1:59470 as auto-0C5E48D1-B053-702C-D852-8BDCCA670F47 (p2, c1, k60).
+1649661154: Client auto-0C5E48D1-B053-702C-D852-8BDCCA670F47 disconnected.
+1649661159: Client blockchain closed its connection.
+1649661193: New connection from 172.17.0.1:59472 on port 1883.
+1649661194: Client <unknown> closed its connection.
+1649661194: New connection from 172.17.0.1:59476 on port 1883.
+1649661194: New client connected from 172.17.0.1:59476 as blockchain (p2, c1, k60, u'admin').
+1649661195: New connection from 172.17.0.1:59478 on port 1883.
+1649661195: New client connected from 172.17.0.1:59478 as auto-3621BB35-018F-94D7-EF52-96CAE213186D (p2, c1, k60).
+1649661195: Client auto-3621BB35-018F-94D7-EF52-96CAE213186D disconnected.
+1649661199: Client blockchain closed its connection.
+1649661224: New connection from 172.17.0.1:59480 on port 1883.
+1649661225: Client <unknown> closed its connection.
+1649661225: New connection from 172.17.0.1:59482 on port 1883.
+1649661225: New client connected from 172.17.0.1:59482 as blockchain (p2, c1, k60, u'admin').
+1649661230: Client blockchain closed its connection.
+1649661233: New connection from 172.17.0.1:59484 on port 1883.
+1649661234: Client <unknown> closed its connection.
+1649661234: New connection from 172.17.0.1:59486 on port 1883.
+1649661234: New client connected from 172.17.0.1:59486 as blockchain (p2, c1, k60, u'admin').
+1649661238: Client blockchain closed its connection.
+1649661246: New connection from 172.17.0.1:59490 on port 1883.
+1649661247: Client <unknown> closed its connection.
+1649661247: New connection from 172.17.0.1:59492 on port 1883.
+1649661247: New client connected from 172.17.0.1:59492 as blockchain (p2, c1, k60, u'admin').
+1649661247: Client blockchain closed its connection.
+1649661253: New connection from 172.17.0.1:59494 on port 1883.
+1649661254: Client <unknown> closed its connection.
+1649661254: New connection from 172.17.0.1:59496 on port 1883.
+1649661254: New client connected from 172.17.0.1:59496 as blockchain (p2, c1, k60, u'admin').
+1649661255: Client blockchain closed its connection.
+1649661263: Saving in-memory database to /var/lib/mosquitto//mosquitto.db.
+1649661263: Error saving in-memory database, unable to open /var/lib/mosquitto//mosquitto.db.new for writing.
+1649661263: Error: No such file or directory.
+1649661303: New connection from 172.17.0.1:59498 on port 1883.
+1649661304: Client <unknown> closed its connection.
+1649661304: New connection from 172.17.0.1:59500 on port 1883.
+1649661304: New client connected from 172.17.0.1:59500 as blockchain (p2, c1, k60, u'admin').
+1649661309: New connection from 172.17.0.1:59502 on port 1883.
+1649661309: New client connected from 172.17.0.1:59502 as auto-271E1D63-981E-1F29-37A7-949A7CE13DA4 (p2, c1, k60).
+1649661309: Client auto-271E1D63-981E-1F29-37A7-949A7CE13DA4 disconnected.
+1649661315: Client blockchain closed its connection.
+1649661317: New connection from 172.17.0.1:59504 on port 1883.
+1649661318: Client <unknown> closed its connection.
+1649661318: New connection from 172.17.0.1:59506 on port 1883.
+1649661318: New client connected from 172.17.0.1:59506 as blockchain (p2, c1, k60, u'admin').
+1649661319: Client blockchain closed its connection.
+1649661374: New connection from 172.17.0.1:59508 on port 1883.
+1649661375: New connection from 172.17.0.1:59510 on port 1883.
+1649661375: New client connected from 172.17.0.1:59510 as auto-1E03FC5F-EDE2-866B-BD77-4CE8E949A702 (p2, c1, k60).
+1649661375: Client auto-1E03FC5F-EDE2-866B-BD77-4CE8E949A702 disconnected.
+1649661375: Client <unknown> closed its connection.
+1649661375: New connection from 172.17.0.1:59512 on port 1883.
+1649661375: New client connected from 172.17.0.1:59512 as blockchain (p2, c1, k60, u'admin').
+1649661377: New connection from 172.17.0.1:59514 on port 1883.
+1649661377: New client connected from 172.17.0.1:59514 as auto-53CCD095-A365-E064-D3AE-E764FAD01C8B (p2, c1, k60).
+1649661377: Client auto-53CCD095-A365-E064-D3AE-E764FAD01C8B disconnected.
+1649661418: Client blockchain closed its connection.
+1649661420: New connection from 172.17.0.1:59516 on port 1883.
+1649661421: Client <unknown> closed its connection.
+1649661421: New connection from 172.17.0.1:59518 on port 1883.
+1649661421: New client connected from 172.17.0.1:59518 as blockchain (p2, c1, k60, u'admin').
+1649661421: New connection from 172.17.0.1:59520 on port 1883.
+1649661421: New client connected from 172.17.0.1:59520 as auto-C95DF13F-2CDE-4C52-F225-3D0A63FDCE36 (p2, c1, k60).
+1649661421: Client auto-C95DF13F-2CDE-4C52-F225-3D0A63FDCE36 disconnected.
+1649661457: Client blockchain closed its connection.
+1649661458: New connection from 172.17.0.1:59522 on port 1883.
+1649661459: Client <unknown> closed its connection.
+1649661459: New connection from 172.17.0.1:59524 on port 1883.
+1649661459: New client connected from 172.17.0.1:59524 as blockchain (p2, c1, k60, u'admin').
+1649661460: New connection from 172.17.0.1:59526 on port 1883.
+1649661460: New client connected from 172.17.0.1:59526 as auto-8C230C78-D928-C05A-6C77-22537D7F3A44 (p2, c1, k60).
+1649661460: Client auto-8C230C78-D928-C05A-6C77-22537D7F3A44 disconnected.
+1649661481: Client blockchain closed its connection.
+1649661482: New connection from 172.17.0.1:59530 on port 1883.
+1649661483: Client <unknown> closed its connection.
+1649661483: New connection from 172.17.0.1:59532 on port 1883.
+1649661483: New client connected from 172.17.0.1:59532 as blockchain (p2, c1, k60, u'admin').
+1649661485: New connection from 172.17.0.1:59534 on port 1883.
+1649661485: New client connected from 172.17.0.1:59534 as auto-EEAF66A5-64AE-6171-F622-87CD913BC216 (p2, c1, k60).
+1649661485: Client auto-EEAF66A5-64AE-6171-F622-87CD913BC216 disconnected.
+1649661495: Client blockchain closed its connection.
+1649661497: New connection from 172.17.0.1:59536 on port 1883.
+1649661498: New connection from 172.17.0.1:59538 on port 1883.
+1649661498: New client connected from 172.17.0.1:59538 as auto-CEB4E35F-8BF6-E34C-6323-831FFB45FF60 (p2, c1, k60).
+1649661498: Client auto-CEB4E35F-8BF6-E34C-6323-831FFB45FF60 disconnected.
+1649661498: Client <unknown> closed its connection.
+1649661498: New connection from 172.17.0.1:59542 on port 1883.
+1649661498: New client connected from 172.17.0.1:59542 as blockchain (p2, c1, k60, u'admin').
+1649661500: New connection from 172.17.0.1:59544 on port 1883.
+1649661500: New client connected from 172.17.0.1:59544 as auto-6C140E08-7AEA-37D7-2416-5C89A0136446 (p2, c1, k60).
+1649661500: Client auto-6C140E08-7AEA-37D7-2416-5C89A0136446 disconnected.
+1649661787: New connection from 172.17.0.1:59546 on port 1883.
+1649661787: New client connected from 172.17.0.1:59546 as auto-7EF1BE6D-4075-B35B-4505-07B5244A2956 (p2, c1, k60).
+1649661787: Client auto-7EF1BE6D-4075-B35B-4505-07B5244A2956 disconnected.
+1649661803: Client blockchain closed its connection.
+1649661804: New connection from 172.17.0.1:59548 on port 1883.
+1649661805: Client <unknown> closed its connection.
+1649661805: New connection from 172.17.0.1:59550 on port 1883.
+1649661805: New client connected from 172.17.0.1:59550 as blockchain (p2, c1, k60, u'admin').
+1649661811: New connection from 172.17.0.1:59552 on port 1883.
+1649661811: New client connected from 172.17.0.1:59552 as auto-636CB3F5-E5B6-B29A-000F-AE5837296FFE (p2, c1, k60).
+1649661811: Client auto-636CB3F5-E5B6-B29A-000F-AE5837296FFE disconnected.
+1649661847: Client auto-54CFDDE4-E824-7E59-D723-2398FE3CBF1D disconnected.
+1649661848: New connection from 172.17.0.1:59554 on port 1883.
+1649661848: New client connected from 172.17.0.1:59554 as auto-5539E7ED-CC2F-161F-7972-231FC9C78A86 (p2, c1, k60, u'admin').
+1649661850: Client auto-5539E7ED-CC2F-161F-7972-231FC9C78A86 disconnected.
+1649661854: New connection from 172.17.0.1:59556 on port 1883.
+1649661854: New client connected from 172.17.0.1:59556 as auto-48D31EF7-676A-78EA-D8B0-3647765E5226 (p2, c1, k60, u'admin').
+1649661858: New connection from 172.17.0.1:59558 on port 1883.
+1649661858: New client connected from 172.17.0.1:59558 as auto-948DC621-2FE2-EC56-2DC6-5D70BB12F9D3 (p2, c1, k60).
+1649661858: Client auto-948DC621-2FE2-EC56-2DC6-5D70BB12F9D3 disconnected.
+1649661861: New connection from 172.17.0.1:59560 on port 1883.
+1649661861: New client connected from 172.17.0.1:59560 as auto-353D5733-A5A3-5F23-9B89-E5F928FC6DC8 (p2, c1, k60).
+1649661861: Client auto-353D5733-A5A3-5F23-9B89-E5F928FC6DC8 disconnected.
+1649661861: New connection from 172.17.0.1:59562 on port 1883.
+1649661861: New client connected from 172.17.0.1:59562 as auto-24F430BE-F888-0D16-2DE2-D69BBF124D48 (p2, c1, k60).
+1649661861: Client auto-24F430BE-F888-0D16-2DE2-D69BBF124D48 disconnected.
+1649661899: Client blockchain closed its connection.
+1649661938: New connection from 172.17.0.1:59564 on port 1883.
+1649661938: New client connected from 172.17.0.1:59564 as auto-6F3AC7F6-D260-5FCD-88CB-6A64AAAA42B5 (p2, c1, k60).
+1649661938: Client auto-6F3AC7F6-D260-5FCD-88CB-6A64AAAA42B5 disconnected.
+1649661944: New connection from 172.17.0.1:59566 on port 1883.
+1649661945: Client <unknown> closed its connection.
+1649661945: New connection from 172.17.0.1:59568 on port 1883.
+1649661945: New client connected from 172.17.0.1:59568 as blockchain (p2, c1, k60, u'admin').
+1649661945: New connection from 172.17.0.1:59570 on port 1883.
+1649661945: New client connected from 172.17.0.1:59570 as auto-3F47B104-11C7-ACF8-2A04-429A5B85C3E0 (p2, c1, k60).
+1649661945: Client auto-3F47B104-11C7-ACF8-2A04-429A5B85C3E0 disconnected.
+1649661998: New connection from 172.17.0.1:59572 on port 1883.
+1649661998: New client connected from 172.17.0.1:59572 as auto-84043AA8-192F-5DCF-0CE8-8E5C93B67953 (p2, c1, k60).
+1649661998: Client auto-84043AA8-192F-5DCF-0CE8-8E5C93B67953 disconnected.
+1649661999: New connection from 172.17.0.1:59574 on port 1883.
+1649661999: New client connected from 172.17.0.1:59574 as auto-1317F496-28F1-320A-2310-310BDDE7A709 (p2, c1, k60).
+1649661999: Client auto-1317F496-28F1-320A-2310-310BDDE7A709 disconnected.
+1649662014: Client blockchain closed its connection.
+1649662015: New connection from 172.17.0.1:59576 on port 1883.
+1649662016: Client <unknown> closed its connection.
+1649662016: New connection from 172.17.0.1:59578 on port 1883.
+1649662016: New client connected from 172.17.0.1:59578 as blockchain (p2, c1, k60, u'admin').
+1649662017: New connection from 172.17.0.1:59580 on port 1883.
+1649662017: New client connected from 172.17.0.1:59580 as auto-D3E99980-27FA-96B6-37D6-1778F1902B7E (p2, c1, k60).
+1649662017: Client auto-D3E99980-27FA-96B6-37D6-1778F1902B7E disconnected.
+1649662033: Client blockchain closed its connection.
+1649662080: New connection from 172.17.0.1:59582 on port 1883.
+1649662081: Client <unknown> closed its connection.
+1649662081: New connection from 172.17.0.1:59584 on port 1883.
+1649662081: New client connected from 172.17.0.1:59584 as blockchain (p2, c1, k60, u'admin').
+1649662104: New connection from 172.17.0.1:59586 on port 1883.
+1649662104: New client connected from 172.17.0.1:59586 as auto-D61AFC73-747A-949F-CDA4-D31E68CF498F (p2, c1, k60).
+1649662104: Client auto-D61AFC73-747A-949F-CDA4-D31E68CF498F disconnected.
+1649662123: Client blockchain closed its connection.
+1649662124: New connection from 172.17.0.1:59588 on port 1883.
+1649662125: Client <unknown> closed its connection.
+1649662125: New connection from 172.17.0.1:59590 on port 1883.
+1649662125: New client connected from 172.17.0.1:59590 as blockchain (p2, c1, k60, u'admin').
+1649662126: New connection from 172.17.0.1:59592 on port 1883.
+1649662126: New client connected from 172.17.0.1:59592 as auto-AEF17A56-4498-AAB7-04E2-1FDDC595033B (p2, c1, k60).
+1649662126: Client auto-AEF17A56-4498-AAB7-04E2-1FDDC595033B disconnected.
+1649662149: Client blockchain closed its connection.
+1649662150: New connection from 172.17.0.1:59594 on port 1883.
+1649662151: Client <unknown> closed its connection.
+1649662151: New connection from 172.17.0.1:59596 on port 1883.
+1649662151: New client connected from 172.17.0.1:59596 as blockchain (p2, c1, k60, u'admin').
+1649662151: New connection from 172.17.0.1:59598 on port 1883.
+1649662151: New client connected from 172.17.0.1:59598 as auto-245CA361-A336-3D3B-9ED8-176FA3FA98CB (p2, c1, k60).
+1649662151: Client auto-245CA361-A336-3D3B-9ED8-176FA3FA98CB disconnected.
+1649662153: New connection from 172.17.0.1:59600 on port 1883.
+1649662153: New client connected from 172.17.0.1:59600 as auto-F0780329-3DD1-88E7-F9D4-080C0B62E0A2 (p2, c1, k60).
+1649662153: Client auto-F0780329-3DD1-88E7-F9D4-080C0B62E0A2 disconnected.
+1649662173: Client blockchain closed its connection.
+1649662174: New connection from 172.17.0.1:59602 on port 1883.
+1649662175: Client <unknown> closed its connection.
+1649662175: New connection from 172.17.0.1:59604 on port 1883.
+1649662175: New connection from 172.17.0.1:59606 on port 1883.
+1649662175: New client connected from 172.17.0.1:59604 as blockchain (p2, c1, k60, u'admin').
+1649662175: New client connected from 172.17.0.1:59606 as auto-B012D33D-7BCE-98F0-3567-00FFF5B6929D (p2, c1, k60).
+1649662175: Client auto-B012D33D-7BCE-98F0-3567-00FFF5B6929D disconnected.
+1649662177: New connection from 172.17.0.1:59608 on port 1883.
+1649662177: New client connected from 172.17.0.1:59608 as auto-5A030D81-98F9-B26F-41B9-9B0EB16B65DA (p2, c1, k60).
+1649662177: Client auto-5A030D81-98F9-B26F-41B9-9B0EB16B65DA disconnected.
+1649662189: Client blockchain closed its connection.
+1649662214: Client auto-48D31EF7-676A-78EA-D8B0-3647765E5226 disconnected.
+1649662215: New connection from 172.17.0.1:59610 on port 1883.
+1649662215: New client connected from 172.17.0.1:59610 as auto-3AFBA176-794C-F112-6C99-5F9F0C47B1B2 (p2, c1, k60, u'admin').
+1649662322: Client auto-3AFBA176-794C-F112-6C99-5F9F0C47B1B2 disconnected.
+1649662323: New connection from 172.17.0.1:59612 on port 1883.
+1649662323: New client connected from 172.17.0.1:59612 as auto-038A7384-881D-2FA2-DF7C-D7DF86C66A6B (p2, c1, k60, u'admin').
+1649662328: New connection from 172.17.0.1:59614 on port 1883.
+1649662329: Client <unknown> closed its connection.
+1649662329: New connection from 172.17.0.1:59616 on port 1883.
+1649662329: New client connected from 172.17.0.1:59616 as blockchain (p2, c1, k60, u'admin').
+1649662332: New connection from 172.17.0.1:59618 on port 1883.
+1649662332: New client connected from 172.17.0.1:59618 as auto-7B3F0B49-B951-343D-C9CC-55467E1B42A1 (p2, c1, k60).
+1649662332: Client auto-7B3F0B49-B951-343D-C9CC-55467E1B42A1 disconnected.
+1649663021: Client blockchain closed its connection.
+1649663050: New connection from 172.17.0.1:59620 on port 1883.
+1649663051: Client <unknown> closed its connection.
+1649663051: New connection from 172.17.0.1:59622 on port 1883.
+1649663051: New client connected from 172.17.0.1:59622 as blockchain (p2, c1, k60, u'admin').
+1649663053: New connection from 172.17.0.1:59624 on port 1883.
+1649663053: New client connected from 172.17.0.1:59624 as auto-DCD74D37-BE38-A195-B4B6-648B9054C126 (p2, c1, k60).
+1649663053: Client auto-DCD74D37-BE38-A195-B4B6-648B9054C126 disconnected.
+1649663064: Saving in-memory database to /var/lib/mosquitto//mosquitto.db.
+1649663064: Error saving in-memory database, unable to open /var/lib/mosquitto//mosquitto.db.new for writing.
+1649663064: Error: No such file or directory.
+1649663095: Client blockchain closed its connection.
+1649663107: New connection from 172.17.0.1:59626 on port 1883.
+1649663108: Client <unknown> closed its connection.
+1649663108: New connection from 172.17.0.1:59628 on port 1883.
+1649663108: New client connected from 172.17.0.1:59628 as blockchain (p2, c1, k60, u'admin').
+1649663111: New connection from 172.17.0.1:59630 on port 1883.
+1649663111: New client connected from 172.17.0.1:59630 as auto-9C7B06EA-37C0-1E20-257C-29CD7B8AA4B2 (p2, c1, k60).
+1649663111: Client auto-9C7B06EA-37C0-1E20-257C-29CD7B8AA4B2 disconnected.
+1649663135: Client blockchain closed its connection.
+1649663136: New connection from 172.17.0.1:59632 on port 1883.
+1649663137: Client <unknown> closed its connection.
+1649663137: New connection from 172.17.0.1:59636 on port 1883.
+1649663137: New client connected from 172.17.0.1:59636 as blockchain (p2, c1, k60, u'admin').
+1649663138: New connection from 172.17.0.1:59638 on port 1883.
+1649663138: New client connected from 172.17.0.1:59638 as auto-30429461-FD13-E7CA-F3D1-16F87E18694D (p2, c1, k60).
+1649663138: Client auto-30429461-FD13-E7CA-F3D1-16F87E18694D disconnected.
+1649663146: Client blockchain closed its connection.
+1649663148: New connection from 172.17.0.1:59642 on port 1883.
+1649663149: Client <unknown> closed its connection.
+1649663149: New connection from 172.17.0.1:59644 on port 1883.
+1649663149: New client connected from 172.17.0.1:59644 as blockchain (p2, c1, k60, u'admin').
+1649663149: New connection from 172.17.0.1:59646 on port 1883.
+1649663149: New client connected from 172.17.0.1:59646 as auto-FEA1A5F7-7BA1-96D0-68B6-945751419914 (p2, c1, k60).
+1649663149: Client auto-FEA1A5F7-7BA1-96D0-68B6-945751419914 disconnected.
+1649663155: Client blockchain closed its connection.
+1649663156: New connection from 172.17.0.1:59648 on port 1883.
+1649663157: Client <unknown> closed its connection.
+1649663157: New connection from 172.17.0.1:59650 on port 1883.
+1649663157: New client connected from 172.17.0.1:59650 as blockchain (p2, c1, k60, u'admin').
+1649663158: New connection from 172.17.0.1:59652 on port 1883.
+1649663158: New client connected from 172.17.0.1:59652 as auto-D905CF1F-CC10-F35E-A8F6-F130B0D98D90 (p2, c1, k60).
+1649663158: Client auto-D905CF1F-CC10-F35E-A8F6-F130B0D98D90 disconnected.
+1649663188: Client blockchain closed its connection.
+1649663189: New connection from 172.17.0.1:59654 on port 1883.
+1649663190: Client <unknown> closed its connection.
+1649663190: New connection from 172.17.0.1:59656 on port 1883.
+1649663190: New client connected from 172.17.0.1:59656 as blockchain (p2, c1, k60, u'admin').
+1649663191: New connection from 172.17.0.1:59658 on port 1883.
+1649663191: New client connected from 172.17.0.1:59658 as auto-00808BB9-D44A-362A-DD12-10F9A12635C5 (p2, c1, k60).
+1649663191: Client auto-00808BB9-D44A-362A-DD12-10F9A12635C5 disconnected.
+1649663239: Client blockchain closed its connection.
+1649663240: New connection from 172.17.0.1:59660 on port 1883.
+1649663240: New connection from 172.17.0.1:59662 on port 1883.
+1649663240: New client connected from 172.17.0.1:59662 as auto-70D1F6E6-D2EA-F190-DEC6-AA7D60A06D19 (p2, c1, k60).
+1649663240: Client auto-70D1F6E6-D2EA-F190-DEC6-AA7D60A06D19 disconnected.
+1649663241: Client <unknown> closed its connection.
+1649663241: New connection from 172.17.0.1:59664 on port 1883.
+1649663241: New client connected from 172.17.0.1:59664 as blockchain (p2, c1, k60, u'admin').
+1649663242: New connection from 172.17.0.1:59668 on port 1883.
+1649663242: New client connected from 172.17.0.1:59668 as auto-0291E72A-5C8D-EF3C-12FF-289A2586CF8A (p2, c1, k60).
+1649663242: Client auto-0291E72A-5C8D-EF3C-12FF-289A2586CF8A disconnected.
+1649663254: Client blockchain closed its connection.
+1649664865: Saving in-memory database to /var/lib/mosquitto//mosquitto.db.
+1649664865: Error saving in-memory database, unable to open /var/lib/mosquitto//mosquitto.db.new for writing.
+1649664865: Error: No such file or directory.
+1649665320: Client auto-038A7384-881D-2FA2-DF7C-D7DF86C66A6B disconnected.
+1649665327: New connection from 172.17.0.1:59672 on port 1883.
+1649665327: New client connected from 172.17.0.1:59672 as auto-56117A12-AD65-131E-291C-A04F3EF23A1D (p2, c1, k60, u'admin').
+1649665335: New connection from 172.17.0.1:59674 on port 1883.
+1649665335: New client connected from 172.17.0.1:59674 as auto-EC25C726-A92A-AFC5-9C14-E55067C72D74 (p2, c1, k60).
+1649665335: Client auto-EC25C726-A92A-AFC5-9C14-E55067C72D74 disconnected.
+1649666088: Client auto-56117A12-AD65-131E-291C-A04F3EF23A1D disconnected.
+1649666091: New connection from 172.17.0.1:59676 on port 1883.
+1649666091: New client connected from 172.17.0.1:59676 as auto-67922561-AD66-F117-1CF8-1440B70BA083 (p2, c1, k60, u'admin').
+1649666098: New connection from 172.17.0.1:59678 on port 1883.
+1649666098: New client connected from 172.17.0.1:59678 as auto-BC9EFBB0-8B5C-3465-639F-EB8D791CB3C8 (p2, c1, k60).
+1649666098: Client auto-BC9EFBB0-8B5C-3465-639F-EB8D791CB3C8 disconnected.
+1649666118: Client auto-67922561-AD66-F117-1CF8-1440B70BA083 disconnected.
+1649666456: New connection from 172.17.0.1:59680 on port 1883.
+1649666456: New client connected from 172.17.0.1:59680 as auto-B6568548-71DD-6C4E-7418-25F509585C4C (p2, c1, k60, u'admin').
+1649666464: New connection from 172.17.0.1:59682 on port 1883.
+1649666465: Client <unknown> closed its connection.
+1649666465: New connection from 172.17.0.1:59684 on port 1883.
+1649666465: New client connected from 172.17.0.1:59684 as blockchain (p2, c1, k60, u'admin').
+1649666469: New connection from 172.17.0.1:59686 on port 1883.
+1649666469: New client connected from 172.17.0.1:59686 as auto-02818239-D502-E13C-4C7C-A8B2E531B69C (p2, c1, k60).
+1649666469: Client auto-02818239-D502-E13C-4C7C-A8B2E531B69C disconnected.
+1649666481: Client blockchain closed its connection.
+1649666640: Client auto-B6568548-71DD-6C4E-7418-25F509585C4C closed its connection.
+1649666666: Saving in-memory database to /var/lib/mosquitto//mosquitto.db.
+1649666666: Error saving in-memory database, unable to open /var/lib/mosquitto//mosquitto.db.new for writing.
+1649666666: Error: No such file or directory.
