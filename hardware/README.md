@@ -28,7 +28,7 @@ const char *MQTT_PASSWORD = "password";
 const String DEVICE_ID = "1234abc";
 ```
 
-## Build and upload code to NodeMCU using platformIO
+## Build and upload code to NodeMCU using PlatformIO
 #### [Reference](https://docs.platformio.org/en/latest/integration/ide/vscode.html)
 
 
