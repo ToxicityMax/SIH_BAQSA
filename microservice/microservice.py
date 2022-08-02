@@ -1,9 +1,27 @@
 from decimal import Decimal
-from config import Config
 import json
 import time
 import paho.mqtt.client as mqtt
 import requests
+import env
+
+
+def get_var(var_name, default="throw_error"):
+    value_from_env = getattr(env, var_name, default)
+    if value_from_env == "throw_error":
+        raise Exception("Missing value of {var_name} in environment")
+    return value_from_env
+
+
+class Config:
+    DEBUG_MODE = get_var("DEBUG_MODE", False)
+    MQTT_PASSWORD = get_var("MQTT_PASSWORD")
+    MQTT_USERNAME = get_var("MQTT_USERNAME")
+    MQTT_TOPIC = get_var("MQTT_TOPIC", "/readings/#")
+    MQTT_PORT = get_var("MQTT_PORT", "1883")
+    MQTT_HOST = get_var("MQTT_HOST", "127.0.0.1")
+    BACKEND_HOST = "https://3b4e-103-46-203-93.in.ngrok.io"
+
 
 class MqttClient:
     def __init__(self, timeout=None, temperature_threshold=None) -> None:
@@ -43,12 +61,11 @@ class MqttClient:
         payload = msg.payload.decode('utf-8')
         payload = json.loads(payload)
 
-        temperature = Decimal(payload.get('temperature', None))
-        humidity = Decimal(payload.get('humidity', None))
+        temperature = int(payload.get('temperature', None))
+        humidity = int(payload.get('humidity', None))
         current_time = payload.get('current_time', None)
-
         print(
-            f"\nReceived readings from device {device_id} on {current_time} on topic {msg.topic}")
+            f"Received readings from device {device_id} on {current_time} on topic {msg.topic}")
         # getting device information and thresholds for temperature and humidity
         temperature_threshold = 15
         ideal_temperature_val = -40
@@ -59,14 +76,22 @@ class MqttClient:
         if abs(temperature-ideal_temperature_val) > temperature_threshold or abs(humidity-ideal_humidity_val) > humidity_threshold:
             # Code for faulty readings
             data = {
-                "device_id":device_id,
-                "temperature":temperature,
-                "humidity":humidity,
-                "at_time":current_time,
+                "device_id": device_id,
+                "temperature": temperature,
+                "humidity": humidity,
+                "at_time": current_time,
             }
             # requests.post(Config.BACKEND_HOST,data=data)
-            print(f"\nSending faulty readings to the backend which makes a transaction on the blockhain network for device {device_id}")
-
+            print(
+                f"Sending faulty readings to the backend which makes a transaction on the blockhain network for device {device_id}")
+            payload = {
+                "oid": 1,
+                "temperature": temperature,
+                "humidity": humidity
+            }
+            headers = {"Content-Type": "application/json"}
+            response = requests.request("POST", f'{Config.BACKEND_HOST}/physical_entries/', json=payload, headers=headers)
+            print(response.text)
     # The callback for when the client receives a CONNACK response from the server.
     def on_connect(self, client, userdata, flags, rc):
         if rc == 0:

@@ -70,6 +70,6 @@ env.py
 
 # PEP 582; used by e.g. github.com/David-OConnor/pyflow
 __pypackages__/
-
+.idea/
 
 # End of https://www.toptal.com/developers/gitignore/api/pythonvanilla
