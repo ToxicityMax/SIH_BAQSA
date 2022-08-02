@@ -22,10 +22,10 @@ RTC_DS3231 rtc;
 const char *WIFI_SSID = "ESP_TEST";
 const char *WIFI_PASSWORD = "hello1234";
 const char *MQTT_SERVER = "mosquitto.ssrivastava.tech";
+const int MQTT_PORT = 1883;
 const char *MQTT_USERNAME = "sih";
 const char *MQTT_PASSWORD = "admin";
 const String DEVICE_ID = "1234abc";
-const int MQTT_PORT = 1883;
 
 WiFiClient espClient;
 PubSubClient client(espClient);
