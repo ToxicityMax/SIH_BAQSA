@@ -23,7 +23,7 @@ docker pull eclipse-mosquitto
 ## Install mosquitto 
 
 ```bash
-sudo apt update  & sudo apt-get install mosquitto mosquitto-clients
+sudo apt update  && sudo apt-get install mosquitto mosquitto-clients
 sudo systemctl disable --now mosquitto
 ```
 ### Create username and passwd for broker
