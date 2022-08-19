@@ -16,7 +16,7 @@ import {
 import { OrderService } from './order.service';
 import { CreateOrderDto } from './dto/create-order.dto';
 import { UpdateOrderDto } from './dto/update-order.dto';
-import {ApiSecurity, ApiTags} from '@nestjs/swagger';
+import { ApiSecurity, ApiTags } from '@nestjs/swagger';
 import { UserGuard } from '../../guards/user.guard';
 import crypto from 'crypto';
 import path from 'path';
@@ -75,16 +75,16 @@ export class OrderController {
     return this.orderService.findOne(id);
   }
 
-  @Put(':id')
-  @UseGuards(UserGuard)
-  @ApiSecurity('x-access-token', ['x-access-token'])
-  update(
-    @Param('id') id: string,
-    @Req() request,
-    @Body() updateOrderDto: UpdateOrderDto,
-  ) {
-    return this.orderService.update(id, updateOrderDto);
-  }
+  // @Put(':id')
+  // @UseGuards(UserGuard)
+  // @ApiSecurity('x-access-token', ['x-access-token'])
+  // update(
+  //   @Param('id') id: string,
+  //   @Req() request,
+  //   @Body() updateOrderDto: UpdateOrderDto,
+  // ) {
+  //   return this.orderService.update(id, updateOrderDto);
+  // }
 
   @Delete(':id')
   @UseGuards(UserGuard)

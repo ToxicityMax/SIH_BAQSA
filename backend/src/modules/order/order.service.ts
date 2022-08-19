@@ -14,8 +14,9 @@ export class OrderService {
   ) {}
   async create(createOrderDto: CreateOrderDto, user) {
     const newOrder = new this.order(createOrderDto);
-    newOrder.createdBy = user;
+    newOrder.createdBy = user.id;
     newOrder.deviceId = await this.getNewDeviceId();
+    newOrder.currentOwner = user.id;
     await newOrder.save();
     return {
       orderId: newOrder._id,
@@ -24,6 +25,14 @@ export class OrderService {
     };
   }
 
+  async updateOwner(orderId, user) {
+    return this.order.updateOne(
+      { _id: orderId },
+      {
+        $set: { currentOwner: user.id },
+      },
+    );
+  }
   async findAll(user) {
     return this.order.find({ createdBy: user.id });
   }

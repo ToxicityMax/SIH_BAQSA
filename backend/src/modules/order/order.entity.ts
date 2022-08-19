@@ -11,6 +11,7 @@ export interface Order extends Document {
   deviceId: string;
   blockchainId: string;
   createdBy: string;
+  currentOwner: string;
   createdAt: string;
   updatedAt: string;
 }
@@ -23,6 +24,8 @@ export enum Products {
 export const OrderEntity = new mongoose.Schema(
   {
     name: { type: String },
+    createdBy: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
+    currentOwner: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
     product: { type: String, enum: Products },
     threshold: {
       temperature: { type: Array },
@@ -32,7 +35,6 @@ export const OrderEntity = new mongoose.Schema(
     imageUrl: { type: String, default: '' },
     deviceId: { type: String, default: '' },
     blockchainId: { type: String },
-    createdBy: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
   },
   { timestamps: true },
 );

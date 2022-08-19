@@ -17,8 +17,8 @@ import { OrderModule } from './modules/order/order.module';
   imports: [
     AuthModule,
     MongooseModule.forRoot(config.DB_URI),
-    TransferModule,
     OrderModule,
+    TransferModule,
   ],
   controllers: [AppController],
   providers: [AppService],

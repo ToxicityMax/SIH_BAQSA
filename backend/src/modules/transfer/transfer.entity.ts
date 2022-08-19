@@ -12,13 +12,20 @@ export interface Transfer extends Document {
     rating: number;
     message: string;
   };
-  isApproved: boolean;
+  status: string;
+  approvedAt: Date;
   location: {
     latitude: string;
     longitude: string;
   };
   createdAt: string;
   updatedAt: string;
+}
+
+export enum TransferStatus {
+  INITIATED = 'INITIATED',
+  REJECTED = 'REJECTED',
+  APPROVED = 'APPROVED',
 }
 
 export const TransferEntity = new mongoose.Schema(
@@ -31,7 +38,12 @@ export const TransferEntity = new mongoose.Schema(
       rating: { type: Number, min: 0, max: 5 },
       message: { type: String },
     },
-    isApproved: { type: Boolean, default: false },
+    status: {
+      type: String,
+      enum: TransferStatus,
+      default: TransferStatus.INITIATED,
+    },
+    approvedAt: { type: Date },
     location: {
       latitude: { type: String },
       longitude: { type: String },
