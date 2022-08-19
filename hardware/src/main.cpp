@@ -69,7 +69,6 @@ void setup_sensors() {
   delay(500);
 }
 void mqtt_reconnect() {
-
   while (!client.connected()) {
     Serial.print("Attempting MQTT connection...");
     String client_id = "MqttEspClient-";
