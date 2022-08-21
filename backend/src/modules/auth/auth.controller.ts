@@ -22,6 +22,11 @@ import { UserGuard } from '../../guards/user.guard';
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
+  @Get('/roles')
+  async authRoles() {
+    return this.authService.roles();
+  }
+
   @Post('/signup')
   async seller_signup(@Body(ValidationPipe) createAuthDto: UserDTO) {
     await this.authService.create(createAuthDto);

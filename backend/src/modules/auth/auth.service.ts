@@ -65,7 +65,9 @@ export class AuthService {
     });
     return { jwtToken: jwtToken, user: user };
   }
-
+  async roles() {
+    return UserRole;
+  }
   createToken(payload) {
     return jwt.sign(payload, config.SECRET, { expiresIn: '10d' });
   }
