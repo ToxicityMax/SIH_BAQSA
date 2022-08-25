@@ -12,6 +12,7 @@ import { LoggerMiddleware } from './middleware/logger.middleware';
 import { MongooseModule } from '@nestjs/mongoose';
 import { TransferModule } from './modules/transfer/transfer.module';
 import { OrderModule } from './modules/order/order.module';
+import { ReadingsModule } from './modules/readings/readings.module';
 
 @Module({
   imports: [
@@ -19,6 +20,7 @@ import { OrderModule } from './modules/order/order.module';
     MongooseModule.forRoot(config.DB_URI),
     OrderModule,
     TransferModule,
+    ReadingsModule,
   ],
   controllers: [AppController],
   providers: [AppService],

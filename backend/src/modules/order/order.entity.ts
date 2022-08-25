@@ -1,6 +1,7 @@
 import * as mongoose from 'mongoose';
 import { Document } from 'mongoose';
 import { UserEntity } from '../auth/auth.entity';
+import { Products } from './order.constant';
 
 export interface Order extends Document {
   _id: string;
@@ -10,17 +11,13 @@ export interface Order extends Document {
   imageUrl: string;
   deviceId: string;
   blockchainId: string;
+  transactionApproved: boolean;
   createdBy: string;
   currentOwner: string;
   createdAt: string;
   updatedAt: string;
 }
-export enum Products {
-  wheat = 'wheat',
-  rice = 'rice',
-  mangoes = 'mangoes',
-  sugarcane = 'sugarcane',
-}
+
 export const OrderEntity = new mongoose.Schema(
   {
     name: { type: String },
@@ -34,7 +31,7 @@ export const OrderEntity = new mongoose.Schema(
     },
     imageUrl: { type: String, default: '' },
     deviceId: { type: String, default: '' },
-    blockchainId: { type: String },
+    transactionApproved: { type: Boolean, default: false },
   },
   { timestamps: true },
 );

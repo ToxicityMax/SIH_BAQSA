@@ -1,5 +1,5 @@
 import { HttpException, Injectable, OnModuleInit } from '@nestjs/common';
-import { UserDTO, UserLoginDto } from './dto/auth.dto';
+import { MobileLoginDto, UserDTO, UserLoginDto } from './dto/auth.dto';
 import { JwtPayload } from 'jsonwebtoken';
 import config from '../../config';
 import * as jwt from 'jsonwebtoken';
@@ -14,17 +14,39 @@ export class AuthService {
   async create(createAuthDto: UserDTO) {
     if (await this.usernameExists(createAuthDto.username))
       throw new HttpException('Username taken', 400);
+    createAuthDto.walletAddress = createAuthDto.walletAddress.toLowerCase();
     const newAccount = new this.user(createAuthDto);
     await newAccount.save();
     return true;
   }
-
+  async mobileLogin(mobileLoginDto: MobileLoginDto) {
+    const user: User = await this.user.findOne({
+      username: mobileLoginDto.username,
+    });
+    if (!user) throw new HttpException('User not registered', 400);
+    if (!(await checkPasswd(user.password, mobileLoginDto.password)))
+      throw new HttpException('Incorrect Password', 401);
+    const jwtToken = this.createToken({
+      id: user.id,
+      username: user.username,
+      role: user.role,
+    });
+    return {
+      accessToken: jwtToken,
+      user: {
+        name: user.fullName,
+        username: user.username,
+        walletAddress: user.walletAddress,
+        role: user.role,
+      },
+    };
+  }
   async login(loginDto: UserLoginDto) {
     const user: User = await this.user.findOne({ username: loginDto.username });
     if (!user) throw new HttpException('User not registered', 400);
     if (!(await checkPasswd(user.password, loginDto.password)))
       throw new HttpException('Incorrect Password', 401);
-    if (user.walletAddress != loginDto.walletAddress)
+    if (user.walletAddress != loginDto.walletAddress.toLowerCase())
       throw new HttpException('Wallet Address does not match', 401);
     const jwtToken = this.createToken({
       id: user.id,

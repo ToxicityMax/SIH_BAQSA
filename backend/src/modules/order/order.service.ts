@@ -1,10 +1,11 @@
-import { Injectable } from '@nestjs/common';
+import { HttpException, Injectable } from '@nestjs/common';
 import { CreateOrderDto } from './dto/create-order.dto';
 import { UpdateOrderDto } from './dto/update-order.dto';
 import { Model } from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
 import { Order } from './order.entity';
 import { AuthService } from '../auth/auth.service';
+import { ProductsDefaultValues } from './order.constant';
 
 @Injectable()
 export class OrderService {
@@ -12,6 +13,9 @@ export class OrderService {
     @InjectModel('Order') private order: Model<Order>,
     private readonly userService: AuthService,
   ) {}
+  orderProducts() {
+    return ProductsDefaultValues;
+  }
   async create(createOrderDto: CreateOrderDto, user) {
     const newOrder = new this.order(createOrderDto);
     newOrder.createdBy = user.id;
@@ -23,6 +27,14 @@ export class OrderService {
       timestamp: newOrder.createdAt,
       deviceId: newOrder.deviceId,
     };
+  }
+
+  async approveTransaction(id: string) {
+    const order: Order = await this.findOne(id);
+    if (!order) throw new HttpException('Order not found', 404);
+    order.transactionApproved = true;
+    await order.save();
+    throw new HttpException('Success', 200);
   }
 
   async updateOwner(orderId, user) {

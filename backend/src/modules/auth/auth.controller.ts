@@ -12,7 +12,7 @@ import {
   HttpException,
 } from '@nestjs/common';
 import { AuthService } from './auth.service';
-import { UserDTO, UserLoginDto } from './dto/auth.dto';
+import { MobileLoginDto, UserDTO, UserLoginDto } from './dto/auth.dto';
 import { UserRole } from './auth.entity';
 import { ApiSecurity, ApiTags } from '@nestjs/swagger';
 import { UserGuard } from '../../guards/user.guard';
@@ -31,6 +31,11 @@ export class AuthController {
   async seller_signup(@Body(ValidationPipe) createAuthDto: UserDTO) {
     await this.authService.create(createAuthDto);
     throw new HttpException('Success', 200);
+  }
+
+  @Post('/mobile/login')
+  async mobileLogin(@Body(ValidationPipe) mobileLoginDto: MobileLoginDto) {
+    return this.authService.mobileLogin(mobileLoginDto);
   }
 
   @Post('/login')

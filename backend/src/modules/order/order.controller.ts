@@ -3,11 +3,9 @@ import {
   Get,
   Post,
   Body,
-  Patch,
   Param,
   Delete,
   UseGuards,
-  Put,
   Req,
   HttpException,
   UploadedFile,
@@ -15,7 +13,6 @@ import {
 } from '@nestjs/common';
 import { OrderService } from './order.service';
 import { CreateOrderDto } from './dto/create-order.dto';
-import { UpdateOrderDto } from './dto/update-order.dto';
 import { ApiSecurity, ApiTags } from '@nestjs/swagger';
 import { UserGuard } from '../../guards/user.guard';
 import crypto from 'crypto';
@@ -28,6 +25,14 @@ import { diskStorage } from 'multer';
 export class OrderController {
   constructor(private readonly orderService: OrderService) {}
 
+  @Get('/products')
+  orderProducts() {
+    return this.orderService.orderProducts();
+  }
+  @Get('test')
+  test() {
+    return 'hello';
+  }
   @Post()
   @UseGuards(UserGuard)
   @ApiSecurity('x-access-token', ['x-access-token'])
@@ -36,6 +41,7 @@ export class OrderController {
       storage: diskStorage({
         destination: './media/uploads',
         filename: (req, file, cb) => {
+          console.log('asdfsfj');
           const randomName = crypto.randomBytes(12).toString('hex');
           //Calling the callback passing the random name generated with the original extension name
           cb(null, `${randomName}${path.extname(file.originalname)}`);
@@ -57,8 +63,16 @@ export class OrderController {
     @Req() request,
     @UploadedFile() file: Express.Multer.File,
   ) {
-    createOrderDto.imageUrl = `/uploads/${file.filename}`;
+    if (file) createOrderDto.imageUrl = `/uploads/${file.filename}`;
+    else createOrderDto.imageUrl = `/uploads/farmer_image.jpg`;
     return this.orderService.create(createOrderDto, request.user);
+  }
+
+  @Post('/approve-transaction/:id')
+  @UseGuards(UserGuard)
+  @ApiSecurity('x-access-token', ['x-access-token'])
+  approveTransaction(@Param('id') id: string, @Req() request) {
+    return this.orderService.approveTransaction(id);
   }
 
   @Get()

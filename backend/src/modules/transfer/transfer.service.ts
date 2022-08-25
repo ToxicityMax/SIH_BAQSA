@@ -46,7 +46,7 @@ export class TransferService {
   async checkForTransfer(orderId: string, user) {
     const order: Order = await this.orderService.findOne(orderId);
     if (!order) throw new HttpException('Order not found', 404);
-    if (order.createdBy != user.id)
+    if (order.currentOwner.toString() != user.id.toString())
       throw new HttpException('Not your order', 401);
     // todo -> solution for pending initiated transfers
     const transfer = await this.transfer
@@ -59,6 +59,7 @@ export class TransferService {
       })
       .populate('owner')
       .populate('prevOwner');
+    if (!transfer) throw new HttpException('No transfer found', 404);
     return {
       transferId: transfer._id,
       requestedBy: transfer.owner,

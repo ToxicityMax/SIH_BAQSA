@@ -5,6 +5,46 @@ import paho.mqtt.client as mqtt
 import requests
 import env
 
+ProductsDefaultValues = [
+    {
+        name: 'wheat',
+        average_temp: 30,
+        threshold: {
+            temperature: [30, 43],
+            humidity: [],
+            accelerometer: [],
+        },
+    },
+    {
+        name: 'rice',
+        average_temp: 28,
+        threshold: {
+            temperature: [20, 33],
+            humidity: [],
+            accelerometer: [],
+        },
+    },
+    {
+        name: 'mangoes',
+        average_temp: 30,
+
+        threshold: {
+            temperature: [21, 35],
+            humidity: [],
+            accelerometer: [],
+        },
+    },
+    {
+        name: 'sugarcane',
+        average_temp: 30,
+        threshold: {
+            temperature: [10, 25],
+            humidity: [],
+            accelerometer: [],
+        },
+    },
+]
+
 
 def get_var(var_name, default="throw_error"):
     value_from_env = getattr(env, var_name, default)
@@ -20,7 +60,7 @@ class Config:
     MQTT_TOPIC = get_var("MQTT_TOPIC", "/readings/#")
     MQTT_PORT = get_var("MQTT_PORT", "1883")
     MQTT_HOST = get_var("MQTT_HOST", "127.0.0.1")
-    BACKEND_HOST = "https://3b4e-103-46-203-93.in.ngrok.io"
+    BACKEND_HOST = get_var("BACKEND_HOST")
 
 
 class MqttClient:
@@ -55,43 +95,6 @@ class MqttClient:
         while self.client.is_connected():
             pass
 
-    # The callback for when a PUBLISH message is received from the server.
-    def on_message(self, client, userdata, msg):
-        device_id: str = msg.topic.rsplit('/')[2]
-        payload = msg.payload.decode('utf-8')
-        payload = json.loads(payload)
-
-        temperature = int(payload.get('temperature', None))
-        humidity = int(payload.get('humidity', None))
-        current_time = payload.get('current_time', None)
-        print(
-            f"Received readings from device {device_id} on {current_time} on topic {msg.topic}")
-        # getting device information and thresholds for temperature and humidity
-        temperature_threshold = 15
-        ideal_temperature_val = -40
-
-        ideal_humidity_val = 20
-        humidity_threshold = 20
-
-        if abs(temperature-ideal_temperature_val) > temperature_threshold or abs(humidity-ideal_humidity_val) > humidity_threshold:
-            # Code for faulty readings
-            data = {
-                "device_id": device_id,
-                "temperature": temperature,
-                "humidity": humidity,
-                "at_time": current_time,
-            }
-            # requests.post(Config.BACKEND_HOST,data=data)
-            print(
-                f"Sending faulty readings to the backend which makes a transaction on the blockhain network for device {device_id}")
-            payload = {
-                "oid": 1,
-                "temperature": temperature,
-                "humidity": humidity
-            }
-            headers = {"Content-Type": "application/json"}
-            response = requests.request("POST", f'{Config.BACKEND_HOST}/physical_entries/', json=payload, headers=headers)
-            print(response.text)
     # The callback for when the client receives a CONNACK response from the server.
     def on_connect(self, client, userdata, flags, rc):
         if rc == 0:
@@ -100,6 +103,63 @@ class MqttClient:
             print("Bad connection returned code=", rc)
         #  Subscribe to a list of topics using a lock to guarantee that a topic is only subscribed once
         client.subscribe(self.topic)
+
+    # The callback for when a PUBLISH message is received from the server.
+    def on_message(self, client, userdata, msg):
+        device_id: str = msg.topic.rsplit('/')[2]
+        payload = msg.payload.decode('utf-8')
+        payload = json.loads(payload)
+
+        temperature = float(payload.get('temperature', None))
+        humidity = float(payload.get('humidity', None))
+        x_axis = float(payload.get('x-axis', None))
+        y_axis = float(payload.get('y-axis', None))
+        z_axis = float(payload.get('z-axis', None))
+        timestamp = payload.get('timestamp', None)
+        print(
+            f"Readings from device {device_id} on {timestamp} on topic {msg.topic}")
+
+        # Check for faulty readings
+        fault = self.readings_check(temperature, humidity, x_axis, y_axis, z_axis)
+        self.send_request({
+            "device_id": device_id,
+            "temperature": temperature,
+            "humidity": humidity,
+            'x-axis': x_axis,
+            'y-axis': y_axis,
+            'z-axis': z_axis,
+            'fault': fault,
+            'timestamp': timestamp
+        })
+
+    def readings_check(self, temperature, humidity, x_axis, y_axis, z_axis) -> bool:
+        # Getting device information and thresholds for temperature and humidity
+        temperature_threshold = 15
+        ideal_temperature_val = -40
+        ideal_humidity_val = 20
+        humidity_threshold = 20
+
+        temperature_lower_level = ProductsDefaultValues[0]['threshold']['temperature'][0]
+        temperature_upper_level = ProductsDefaultValues[0]['threshold']['temperature'][1]
+        humidity_lower_level = ProductsDefaultValues[0]['threshold']['humidity'][0]
+        humidity_upper_level = ProductsDefaultValues[0]['threshold']['humidity'][1]
+
+        if abs(temperature - ideal_temperature_val) > temperature_threshold or abs(
+                humidity - ideal_humidity_val) > humidity_threshold:
+            # Code for faulty readings
+            data = {
+                "device_id": device_id,
+                "temperature": temperature,
+                "humidity": humidity,
+                "at_time": current_time,
+            }
+        return True
+
+    def send_request(self, payload: dict) -> None:
+        headers = {"Content-Type": "application/json"}
+        response = requests.request("POST", f'{Config.BACKEND_HOST}/readings/', json=payload,
+                                    headers=headers)
+        print(response.text)
 
 
 if __name__ == "__main__":

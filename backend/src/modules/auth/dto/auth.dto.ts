@@ -48,3 +48,13 @@ export class UserLoginDto {
   @IsNotEmpty()
   password: string;
 }
+
+export class MobileLoginDto {
+  @ApiProperty()
+  @IsNotEmpty()
+  username: string;
+
+  @ApiProperty()
+  @IsNotEmpty()
+  password: string;
+}
