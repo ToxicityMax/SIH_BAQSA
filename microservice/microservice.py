@@ -125,21 +125,37 @@ class MqttClient:
 
         # Check for faulty readings
         fault = self.readings_check(temperature, humidity)
-        delay = datetime.datetime.now() - self.data_sent_at
-        if fault and (delay > 120):
-            self.send_request({
-                "device_id": device_id,
-                "temperature": temperature,
-                "humidity": humidity,
-                "alcohol": alcohol,
-                # 'x-axis': x_axis,
-                # 'y-axis': y_axis,
-                # 'z-axis': z_axis,
-                'fault': fault,
-                'timestamp': str(timestamp)
-            })
+        print(self.data_sent_at, datetime.datetime.now())
 
-        if (not fault) and (delay > 900):
+        if self.data_sent_at:
+            delay = (datetime.datetime.now() -
+                     self.data_sent_at).total_seconds()
+            if fault and (delay > 120):
+                self.send_request({
+                    "device_id": device_id,
+                    "temperature": temperature,
+                    "humidity": humidity,
+                    "alcohol": alcohol,
+                    # 'x-axis': x_axis,
+                    # 'y-axis': y_axis,
+                    # 'z-axis': z_axis,
+                    'fault': fault,
+                    'timestamp': str(timestamp)
+                })
+
+            if (not fault) and (delay > 900):
+                self.send_request({
+                    "device_id": device_id,
+                    "temperature": temperature,
+                    "humidity": humidity,
+                    "alcohol": alcohol,
+                    # 'x-axis': x_axis,
+                    # 'y-axis': y_axis,
+                    # 'z-axis': z_axis,
+                    'fault': fault,
+                    'timestamp': str(timestamp)
+                })
+        else:
             self.send_request({
                 "device_id": device_id,
                 "temperature": temperature,
@@ -175,7 +191,7 @@ class MqttClient:
         headers = {"Content-Type": "application/json"}
         response = requests.request("POST", f'{Config.BACKEND_HOST}/readings/', json=payload,
                                     headers=headers)
-        self.data_sent_at = datetime.datetime.utcnow()
+        self.data_sent_at = datetime.datetime.now()
         print(response.text)
 
 
