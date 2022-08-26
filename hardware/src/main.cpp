@@ -13,10 +13,12 @@
 #define DHTPIN D3
 #define DHTYPE DHT11
 DHT dht(DHTPIN, DHTYPE);
+// Alcohol Sensor
+const int mq3 = A0;
 // RTC VARS
 RTC_DS3231 rtc;
 // SD CARD VARS
-// const int chip_select = D8;
+const int chip_select = D8;
 
 // WIFI&MQTT VARS
 const char *WIFI_SSID = "ESP_TEST";
@@ -84,10 +86,12 @@ void mqtt_reconnect() {
     }
   }
 }
-void mqtt_publish(std::pair<float, float> readings, uint32_t timestamp) {
+void mqtt_publish(std::pair<float, float> readings, uint32_t timestamp,
+                  int alcohol) {
   StaticJsonDocument<256> doc;
   doc["temperature"] = readings.first;
   doc["humidity"] = readings.second;
+  doc["alcohol"] = alcohol;
   doc["timestamp"] = timestamp;
   char payload[128];
   serializeJson(doc, payload);
@@ -120,14 +124,16 @@ void loop() {
   client.loop();
   DateTime now = rtc.now();
   std::pair<float, float> readings = getReadings();
-
+  int alcohol = analogRead(mq3);
   String data = String(now.unixtime());
-  data += ",";
+  data += ", ";
   data += String(readings.first);
-  data += ",";
+  data += ", ";
   data += String(readings.second);
+  data += ", ";
+  data += String(alcohol);
   Serial.println(data);
-  mqtt_publish(readings, now.unixtime());
+  mqtt_publish(readings, now.unixtime(), alcohol);
   // File data_file = SD.open("filename.txt", FILE_WRITE);
   // if (data_file) {
   //   data_file.close();
