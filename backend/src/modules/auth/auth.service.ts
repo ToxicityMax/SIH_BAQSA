@@ -112,4 +112,12 @@ export class AuthService {
     const exists = await this.user.findOne({ username: username }, 'username');
     return !!exists;
   }
+  async userInfo() {
+    const users = await this.user.find({});
+    const result = {};
+    for (const user of users) {
+      result[`${user.walletAddress}`] = user.username;
+    }
+    return result;
+  }
 }

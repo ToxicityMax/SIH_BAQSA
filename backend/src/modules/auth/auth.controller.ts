@@ -43,6 +43,13 @@ export class AuthController {
     return this.authService.login(loginDto);
   }
 
+  @Get('/user/info')
+  @UseGuards(UserGuard)
+  @ApiSecurity('x-access-token', ['x-access-token'])
+  async userInfo() {
+    return this.authService.userInfo();
+  }
+
   @Get('/user')
   @UseGuards(UserGuard)
   @ApiSecurity('x-access-token', ['x-access-token'])

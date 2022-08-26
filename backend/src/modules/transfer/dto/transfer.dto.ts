@@ -24,3 +24,14 @@ export class TransferReviewDto {
   @IsString()
   review: string;
 }
+export class approveTransferDto {
+  @ApiProperty()
+  @IsNotEmpty()
+  @IsString()
+  latitude: string;
+
+  @ApiProperty()
+  @IsNotEmpty()
+  @IsString()
+  longitude: string;
+}

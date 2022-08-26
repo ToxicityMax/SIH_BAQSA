@@ -1,12 +1,16 @@
 import { HttpException, Injectable } from '@nestjs/common';
-import { TransferDto, TransferReviewDto } from './dto/transfer.dto';
+import {
+  approveTransferDto,
+  TransferDto,
+  TransferReviewDto,
+} from './dto/transfer.dto';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { User } from '../auth/auth.entity';
 import { AuthService } from '../auth/auth.service';
 import { OrderService } from '../order/order.service';
 import { Transfer, TransferStatus } from './transfer.entity';
 import { Order } from '../order/order.entity';
+import { contractWithWallet } from '../../common/bc';
 
 @Injectable()
 export class TransferService {
@@ -66,8 +70,35 @@ export class TransferService {
       orderId: orderId,
     };
   }
+  async checkForTransferInitiated(orderId: string, user) {
+    const order: Order = await this.orderService.findOne(orderId);
+    if (!order) throw new HttpException('Order not found', 404);
+    if (order.currentOwner.toString() != user.id.toString())
+      throw new HttpException('Not your order', 401);
+    const transfer = await this.transfer
+      .findOne({
+        order: orderId,
+        status: TransferStatus.INITIATED,
+      })
+      .sort({
+        createdAt: -1,
+      })
+      .populate('owner')
+      .populate('prevOwner');
+    if (!transfer) throw new HttpException('No transfer found', 404);
+    else
+      return {
+        transferId: transfer._id,
+        requestedBy: transfer.owner,
+        orderId: orderId,
+      };
+  }
 
-  async approveTransfer(transferId: string, user) {
+  async approveTransfer(
+    transferId: string,
+    user,
+    approveTransfer: approveTransferDto,
+  ) {
     const transfer: Transfer = await this.transfer
       .findOne({
         _id: transferId,
@@ -84,6 +115,19 @@ export class TransferService {
       transfer.order['_id'],
       transfer.owner['_id'],
     );
+    try {
+      const _transferOrder = await contractWithWallet.transferOrder(
+        transfer.order['_id'],
+        transfer.owner['_id'],
+        approveTransfer.latitude,
+        approveTransfer.longitude,
+        Date.now(),
+      );
+      _transferOrder.wait();
+    } catch (e) {
+      throw new HttpException(e, 400);
+    }
+
     throw new HttpException('Success', 200);
   }
 
@@ -116,6 +160,25 @@ export class TransferService {
 
   findOne(id: string) {
     return `This action returns a #${id} transfer`;
+  }
+
+  async denyTransfer(
+    transferId: string,
+    user,
+    approveTransfer: approveTransferDto,
+  ) {
+    const transfer: Transfer = await this.transfer
+      .findOne({
+        _id: transferId,
+        prevOwner: user.id,
+      })
+      .populate('order')
+      .populate('owner')
+      .populate('prevOwner');
+    if (!transfer) throw new HttpException('Transfer not found', 404);
+    transfer.status = TransferStatus.REJECTED;
+    await transfer.save();
+    throw new HttpException('Success', 200);
   }
 
   // update(id: string, ) {

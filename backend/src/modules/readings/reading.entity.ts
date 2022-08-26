@@ -1,5 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsBoolean, IsNumber, IsString } from 'class-validator';
+import { IsBoolean, IsNumber, IsOptional, IsString } from 'class-validator';
 
 export class Reading {
   @ApiProperty()
@@ -16,14 +16,22 @@ export class Reading {
 
   @ApiProperty()
   @IsNumber()
+  @IsOptional()
+  alcohol: number;
+
+  @ApiProperty()
+  @IsNumber()
+  @IsOptional()
   'x-axis': number;
 
   @ApiProperty()
   @IsNumber()
+  @IsOptional()
   'y-axis': number;
 
   @ApiProperty()
   @IsNumber()
+  @IsOptional()
   'z-axis': number;
 
   @ApiProperty()

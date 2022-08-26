@@ -16,7 +16,7 @@ import { CreateOrderDto } from './dto/create-order.dto';
 import { ApiSecurity, ApiTags } from '@nestjs/swagger';
 import { UserGuard } from '../../guards/user.guard';
 import crypto from 'crypto';
-import path from 'path';
+import * as path from 'path';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { diskStorage } from 'multer';
 
@@ -89,6 +89,19 @@ export class OrderController {
     return this.orderService.findOne(id);
   }
 
+  @Get('/mobile')
+  @UseGuards(UserGuard)
+  @ApiSecurity('x-access-token', ['x-access-token'])
+  findAllMobile() {
+    return this.orderService.findAllBlockchain();
+  }
+
+  @Get('/mobile/:id')
+  @UseGuards(UserGuard)
+  @ApiSecurity('x-access-token', ['x-access-token'])
+  findOneMobile(@Param('id') id: string) {
+    return this.orderService.findOneBlockchain(id);
+  }
   // @Put(':id')
   // @UseGuards(UserGuard)
   // @ApiSecurity('x-access-token', ['x-access-token'])

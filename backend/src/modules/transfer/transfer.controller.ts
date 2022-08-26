@@ -11,9 +11,14 @@ import {
   UseInterceptors,
   HttpException,
   UploadedFile,
+  ValidationPipe,
 } from '@nestjs/common';
 import { TransferService } from './transfer.service';
-import { TransferDto, TransferReviewDto } from './dto/transfer.dto';
+import {
+  approveTransferDto,
+  TransferDto,
+  TransferReviewDto,
+} from './dto/transfer.dto';
 import { ApiSecurity, ApiTags } from '@nestjs/swagger';
 import { UserGuard } from '../../guards/user.guard';
 import { FileInterceptor } from '@nestjs/platform-express';
@@ -40,11 +45,34 @@ export class TransferController {
     return this.transferService.transferApproved(transferId, request.user);
   }
 
-  @Post('/approve-transfer/:transferId')
+  @Post('/approve/:transferId')
   @UseGuards(UserGuard)
   @ApiSecurity('x-access-token', ['x-access-token'])
-  approveTransfer(@Param('transferId') transferId: string, @Req() request) {
-    return this.transferService.approveTransfer(transferId, request.user);
+  approveTransfer(
+    @Param('transferId') transferId: string,
+    @Body() approveTransfer: approveTransferDto,
+    @Req() request,
+  ) {
+    return this.transferService.approveTransfer(
+      transferId,
+      request.user,
+      approveTransfer,
+    );
+  }
+
+  @Post('/deny/:transferId')
+  @UseGuards(UserGuard)
+  @ApiSecurity('x-access-token', ['x-access-token'])
+  denyTransfer(
+    @Param('transferId') transferId: string,
+    @Body() approveTransfer: approveTransferDto,
+    @Req() request,
+  ) {
+    return this.transferService.denyTransfer(
+      transferId,
+      request.user,
+      approveTransfer,
+    );
   }
 
   @Post('/review/:transferId')
@@ -127,5 +155,14 @@ export class OrderTransferController {
   @ApiSecurity('x-access-token', ['x-access-token'])
   isTransferApproved(@Param('orderId') orderId: string, @Req() request) {
     return this.transferService.checkForTransfer(orderId, request.user);
+  }
+  @Get('/is-initiated/:orderId')
+  @UseGuards(UserGuard)
+  @ApiSecurity('x-access-token', ['x-access-token'])
+  isTransferInitiated(@Param('orderId') orderId: string, @Req() request) {
+    return this.transferService.checkForTransferInitiated(
+      orderId,
+      request.user,
+    );
   }
 }
