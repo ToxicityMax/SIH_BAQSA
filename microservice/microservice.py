@@ -4,43 +4,44 @@ import time
 import paho.mqtt.client as mqtt
 import requests
 import env
+import datetime
 
 ProductsDefaultValues = [
     {
-        name: 'wheat',
-        average_temp: 30,
-        threshold: {
-            temperature: [30, 43],
-            humidity: [],
-            accelerometer: [],
+        'name': 'wheat',
+        'average_temp': 30,
+        'threshold': {
+            'temperature': [30, 43],
+            'humidity': [20, 30],
+            'accelerometer': [],
         },
     },
     {
-        name: 'rice',
-        average_temp: 28,
-        threshold: {
-            temperature: [20, 33],
-            humidity: [],
-            accelerometer: [],
+        'name': 'rice',
+        'average_temp': 28,
+        'threshold': {
+            'temperature': [20, 33],
+            'humidity': [20, 30],
+            'accelerometer': [],
         },
     },
     {
-        name: 'mangoes',
-        average_temp: 30,
+        'name': 'mangoes',
+        'average_temp': 30,
 
-        threshold: {
-            temperature: [21, 35],
-            humidity: [],
-            accelerometer: [],
+        'threshold': {
+            'temperature': [21, 35],
+            'humidity': [20, 30],
+            'accelerometer': [],
         },
     },
     {
-        name: 'sugarcane',
-        average_temp: 30,
-        threshold: {
-            temperature: [10, 25],
-            humidity: [],
-            accelerometer: [],
+        'name': 'sugarcane',
+        'average_temp': 30,
+        'threshold': {
+            'temperature': [10, 25],
+            'humidity': [20, 30],
+            'accelerometer': [],
         },
     },
 ]
@@ -73,6 +74,7 @@ class MqttClient:
         self.topic = Config.MQTT_TOPIC
         self.username = Config.MQTT_USERNAME
         self.password = Config.MQTT_PASSWORD
+        self.data_sent_at = None
 
     #  run method override from Thread class
     def run(self):
@@ -112,56 +114,73 @@ class MqttClient:
 
         temperature = float(payload.get('temperature', None))
         humidity = float(payload.get('humidity', None))
-        x_axis = float(payload.get('x-axis', None))
-        y_axis = float(payload.get('y-axis', None))
-        z_axis = float(payload.get('z-axis', None))
+        alcohol = float(payload.get('alcohol', 170))
+        # x_axis = float(payload.get('x-axis', None))
+        # y_axis = float(payload.get('y-axis', None))
+        # z_axis = float(payload.get('z-axis', None))
         timestamp = payload.get('timestamp', None)
+        current_time = datetime.datetime.utcnow()
         print(
             f"Readings from device {device_id} on {timestamp} on topic {msg.topic}")
 
         # Check for faulty readings
-        fault = self.readings_check(temperature, humidity, x_axis, y_axis, z_axis)
-        self.send_request({
-            "device_id": device_id,
-            "temperature": temperature,
-            "humidity": humidity,
-            'x-axis': x_axis,
-            'y-axis': y_axis,
-            'z-axis': z_axis,
-            'fault': fault,
-            'timestamp': timestamp
-        })
+        fault = self.readings_check(temperature, humidity)
+        delay = datetime.datetime.now() - self.data_sent_at
+        if fault and (delay > 120):
+            self.send_request({
+                "device_id": device_id,
+                "temperature": temperature,
+                "humidity": humidity,
+                "alcohol": alcohol,
+                # 'x-axis': x_axis,
+                # 'y-axis': y_axis,
+                # 'z-axis': z_axis,
+                'fault': fault,
+                'timestamp': str(timestamp)
+            })
 
-    def readings_check(self, temperature, humidity, x_axis, y_axis, z_axis) -> bool:
-        # Getting device information and thresholds for temperature and humidity
-        temperature_threshold = 15
-        ideal_temperature_val = -40
-        ideal_humidity_val = 20
-        humidity_threshold = 20
+        if (not fault) and (delay > 900):
+            self.send_request({
+                "device_id": device_id,
+                "temperature": temperature,
+                "humidity": humidity,
+                # 'x-axis': x_axis,
+                # 'y-axis': y_axis,
+                # 'z-axis': z_axis,
+                'fault': fault,
+                'timestamp': str(timestamp)
+            })
 
+    def readings_check(self, temperature, humidity, x_axis=None, y_axis=None, z_axis=None) -> bool:
         temperature_lower_level = ProductsDefaultValues[0]['threshold']['temperature'][0]
         temperature_upper_level = ProductsDefaultValues[0]['threshold']['temperature'][1]
         humidity_lower_level = ProductsDefaultValues[0]['threshold']['humidity'][0]
         humidity_upper_level = ProductsDefaultValues[0]['threshold']['humidity'][1]
+        is_temp_fault = is_humid_fault = is_shock = is_alcohol = False
+        if temperature not in range(temperature_lower_level, temperature_upper_level + 1):
+            is_temp_fault = True
+        if humidity not in range(humidity_lower_level, humidity_upper_level + 1):
+            is_humid_fault = True
+        # Check for shock detection
+        # is_shock = False
+        # Check for alcohol value
 
-        if abs(temperature - ideal_temperature_val) > temperature_threshold or abs(
-                humidity - ideal_humidity_val) > humidity_threshold:
-            # Code for faulty readings
-            data = {
-                "device_id": device_id,
-                "temperature": temperature,
-                "humidity": humidity,
-                "at_time": current_time,
-            }
-        return True
+        if is_temp_fault or is_humid_fault or is_shock or is_alcohol:
+            return True
+        else:
+            return False
 
     def send_request(self, payload: dict) -> None:
         headers = {"Content-Type": "application/json"}
         response = requests.request("POST", f'{Config.BACKEND_HOST}/readings/', json=payload,
                                     headers=headers)
+        self.data_sent_at = datetime.datetime.utcnow()
         print(response.text)
 
 
 if __name__ == "__main__":
     mqtt_client = MqttClient(timeout=60)
-    mqtt_client.run()
+    try:
+        mqtt_client.run()
+    except Exception as e:
+        print(e)
