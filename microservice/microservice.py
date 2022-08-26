@@ -144,6 +144,7 @@ class MqttClient:
                 "device_id": device_id,
                 "temperature": temperature,
                 "humidity": humidity,
+                "alcohol": alcohol,
                 # 'x-axis': x_axis,
                 # 'y-axis': y_axis,
                 # 'z-axis': z_axis,
