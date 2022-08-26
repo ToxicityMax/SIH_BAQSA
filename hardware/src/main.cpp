@@ -25,7 +25,7 @@ const char *MQTT_SERVER = "mosquitto.ssrivastava.tech";
 const int MQTT_PORT = 1883;
 const char *MQTT_USERNAME = "sih";
 const char *MQTT_PASSWORD = "admin";
-const String DEVICE_ID = "1234abc";
+const String DEVICE_ID = "abcd1234";
 
 WiFiClient espClient;
 PubSubClient client(espClient);
@@ -86,15 +86,16 @@ void mqtt_reconnect() {
 }
 void mqtt_publish(std::pair<float, float> readings, uint32_t timestamp) {
   StaticJsonDocument<256> doc;
-  doc["temperature"] = 25;
-  doc["humidity"] = 30;
+  doc["temperature"] = readings.first;
+  doc["humidity"] = readings.second;
   doc["timestamp"] = timestamp;
   char payload[128];
   serializeJson(doc, payload);
-  client.publish("/readings/1", payload);
+  String device_id = "/readings/";
+  device_id += DEVICE_ID;
+  client.publish(device_id.c_str(), payload);
 }
 std::pair<float, float> getReadings() {
-
   return std::make_pair(dht.readTemperature(), dht.readHumidity());
 }
 void setup() {
@@ -106,13 +107,12 @@ void setup() {
   // setup_sd();
   setup_sensors();
   setup_wifi();
-  if (client.connect("NodeMcuClient", MQTT_USERNAME, MQTT_PASSWORD)) {
+  if (client.connect("NodeMCUClient", MQTT_USERNAME, MQTT_PASSWORD)) {
     Serial.println("Connected to mqtt");
   }
 }
 
 void loop() {
-
   if (!client.connected()) {
     mqtt_reconnect();
   }
@@ -123,12 +123,9 @@ void loop() {
 
   String data = String(now.unixtime());
   data += ",";
-  // data += String(readings.first);
-  data += String(32);
-
+  data += String(readings.first);
   data += ",";
-  // data += String(readings.second);
-  data += String(25);
+  data += String(readings.second);
   Serial.println(data);
   mqtt_publish(readings, now.unixtime());
   // File data_file = SD.open("filename.txt", FILE_WRITE);
@@ -139,5 +136,5 @@ void loop() {
   //   Serial.println("Error opening file");
   // }
 
-  delay(6000);
+  delay(1000);
 }
