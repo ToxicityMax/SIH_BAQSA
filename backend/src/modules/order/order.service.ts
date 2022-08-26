@@ -50,6 +50,7 @@ export class OrderService {
   }
 
   async findAll(user) {
+    console.log(user.username);
     return this.order.find({ transactionApproved: true, createdBy: user.id });
   }
 

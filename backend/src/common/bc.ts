@@ -423,9 +423,10 @@ const ABI = {
 };
 
 const provider = new ethers.providers.JsonRpcProvider(
-  'https://bc.ssrivastava.tech',
+  'https://polygon-mumbai.g.alchemy.com/v2/IMRPQN_QWuDBJiqEZA9SokxQNPDdi8qT',
 );
+
 const wallet = new ethers.Wallet(config.BC_PRIVATE_KEY, provider);
-const contractAddress = '0x5FbDB2315678afecb367f032d93F642f64180aa3';
+const contractAddress = '0x396F2c7fdd79a43d59949bF3bEaE4AD440d6e8e8';
 const contract = new ethers.Contract(contractAddress, ABI.abi, provider);
 export const contractWithWallet = contract.connect(wallet);

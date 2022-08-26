@@ -14,11 +14,7 @@ import {
   ValidationPipe,
 } from '@nestjs/common';
 import { TransferService } from './transfer.service';
-import {
-  approveTransferDto,
-  TransferDto,
-  TransferReviewDto,
-} from './dto/transfer.dto';
+import { approveTransferDto, TransferDto } from './dto/transfer.dto';
 import { ApiSecurity, ApiTags } from '@nestjs/swagger';
 import { UserGuard } from '../../guards/user.guard';
 import { FileInterceptor } from '@nestjs/platform-express';
@@ -34,8 +30,41 @@ export class TransferController {
   @Post('/initiate')
   @UseGuards(UserGuard)
   @ApiSecurity('x-access-token', ['x-access-token'])
-  create(@Body() createTransferDto: TransferDto, @Req() request) {
-    return this.transferService.create(createTransferDto, request.user);
+  @UseInterceptors(
+    FileInterceptor('image', {
+      storage: diskStorage({
+        destination: './media/uploads',
+        filename: (req, file, cb) => {
+          const randomName = crypto.randomBytes(12).toString('hex');
+          //Calling the callback passing the random name generated with the original extension name
+          cb(null, `${randomName}${path.extname(file.originalname)}`);
+        },
+      }),
+      fileFilter: (req, file, cb) => {
+        const filetypes = /jpeg|jpg|png|gif/;
+        const extname = filetypes.test(
+          path.extname(file.originalname).toLowerCase(),
+        );
+        const mimetype = filetypes.test(file.mimetype);
+        if (mimetype && extname) return cb(null, true);
+        else cb(new HttpException('Upload Images Only!', 400), false);
+      },
+    }),
+  )
+  create(
+    @Body() createTransferDto: TransferDto,
+    @Req() request,
+    @UploadedFile() file: Express.Multer.File,
+  ) {
+    let imageUrl = '';
+    if (file) {
+      imageUrl = `/uploads/${file.filename}`;
+    }
+    return this.transferService.create(
+      createTransferDto,
+      request.user,
+      imageUrl,
+    );
   }
 
   @Get('/is-transfer-approved/:transferId')
@@ -75,44 +104,23 @@ export class TransferController {
     );
   }
 
-  @Post('/review/:transferId')
-  @UseGuards(UserGuard)
-  @ApiSecurity('x-access-token', ['x-access-token'])
-  @UseInterceptors(
-    FileInterceptor('image', {
-      storage: diskStorage({
-        destination: './media/uploads',
-        filename: (req, file, cb) => {
-          const randomName = crypto.randomBytes(12).toString('hex');
-          //Calling the callback passing the random name generated with the original extension name
-          cb(null, `${randomName}${path.extname(file.originalname)}`);
-        },
-      }),
-      fileFilter: (req, file, cb) => {
-        const filetypes = /jpeg|jpg|png|gif/;
-        const extname = filetypes.test(
-          path.extname(file.originalname).toLowerCase(),
-        );
-        const mimetype = filetypes.test(file.mimetype);
-        if (mimetype && extname) return cb(null, true);
-        else cb(new HttpException('Upload Images Only!', 400), false);
-      },
-    }),
-  )
-  addReview(
-    @Param('transferId') transferId: string,
-    @Body() reviewDto: TransferReviewDto,
-    @UploadedFile() file: Express.Multer.File,
-    @Req() request,
-  ) {
-    const imageUrl = `/uploads/${file.filename}`;
-    return this.transferService.addReviewAndImage(
-      transferId,
-      reviewDto,
-      request.user,
-      imageUrl,
-    );
-  }
+  // @Post('/review/:transferId')
+  // @UseGuards(UserGuard)
+  // @ApiSecurity('x-access-token', ['x-access-token'])
+  // addReview(
+  //   @Param('transferId') transferId: string,
+  //   @Body() reviewDto: TransferReviewDto,
+  //   @UploadedFile() file: Express.Multer.File,
+  //   @Req() request,
+  // ) {
+  //   const imageUrl = `/uploads/${file.filename}`;
+  //   return this.transferService.addReviewAndImage(
+  //     transferId,
+  //     reviewDto,
+  //     request.user,
+  //     imageUrl,
+  //   );
+  // }
   //
   // @Get()
   // findAll() {

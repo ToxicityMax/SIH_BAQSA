@@ -11,9 +11,7 @@ export class TransferDto {
   @IsOptional()
   @IsString()
   deviceId: string;
-}
 
-export class TransferReviewDto {
   @ApiProperty()
   @IsNotEmpty()
   @IsNumber()
@@ -24,6 +22,7 @@ export class TransferReviewDto {
   @IsString()
   review: string;
 }
+
 export class approveTransferDto {
   @ApiProperty()
   @IsNotEmpty()

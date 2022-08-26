@@ -10,6 +10,7 @@ export class ReadingsService {
   async create(readingData: Reading) {
     console.log(readingData);
     const order = await this.orderService.findByDevice(readingData.device_id);
+    if (!order) throw new HttpException('Order not found', 404);
     const _insertQualityOrder = await contractWithWallet.qualityEntry(
       order._id,
       readingData.temperature,
@@ -20,6 +21,6 @@ export class ReadingsService {
     );
     _insertQualityOrder.wait();
     console.log(_insertQualityOrder);
-    throw new HttpException('Success', 200 );
+    throw new HttpException('Success', 200);
   }
 }

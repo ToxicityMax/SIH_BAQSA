@@ -1,9 +1,5 @@
 import { HttpException, Injectable } from '@nestjs/common';
-import {
-  approveTransferDto,
-  TransferDto,
-  TransferReviewDto,
-} from './dto/transfer.dto';
+import { approveTransferDto, TransferDto } from './dto/transfer.dto';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { AuthService } from '../auth/auth.service';
@@ -19,7 +15,7 @@ export class TransferService {
     private readonly authService: AuthService,
     private readonly orderService: OrderService,
   ) {}
-  async create(createTransferDto: TransferDto, user) {
+  async create(createTransferDto: TransferDto, user, imageUrl) {
     const order: Order = await this.orderService.findOne(
       createTransferDto.orderId,
     );
@@ -29,6 +25,9 @@ export class TransferService {
     newTransfer.prevOwner = order.currentOwner;
     newTransfer.status = TransferStatus.INITIATED;
     newTransfer.owner = user.id;
+    newTransfer.review['rating'] = createTransferDto.rating;
+    newTransfer.review['review'] = createTransferDto.review;
+    newTransfer.imageUrl = imageUrl;
     await newTransfer.save();
     return {
       transferId: newTransfer._id,
@@ -131,12 +130,7 @@ export class TransferService {
     throw new HttpException('Success', 200);
   }
 
-  async addReviewAndImage(
-    transferId,
-    transferReviewDto: TransferReviewDto,
-    user,
-    imageUrl,
-  ) {
+  async addReviewAndImage(transferId, transferReviewDto, user, imageUrl) {
     const transfer = await this.transfer.findOne({ _id: transferId });
     if (!transfer) throw new HttpException('Transfer not found', 404);
     await this.transfer.updateOne(
