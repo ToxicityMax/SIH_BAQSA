@@ -13,7 +13,7 @@ export class ReadingsController {
     return this.readingsService.create(readingData);
   }
   @Post('/RSUGAR/:id')
-  createSugar(@Param('id') id: string, @Body() data: RSUGAR) {
+  createSugar(@Param('id') id: string, @Body() data) {
     return this.readingsService.createSugar(data, id);
   }
   @Post('/RFACTORY/:id')

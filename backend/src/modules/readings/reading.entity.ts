@@ -57,11 +57,7 @@ export class RSUPPLY {
   timestamp: string;
 }
 
-export class RSUGAR {
-  @ApiProperty()
-  @IsString()
-  device_id: string;
-}
+export class RSUGAR {}
 
 export class RFACTORY {
   @ApiProperty()

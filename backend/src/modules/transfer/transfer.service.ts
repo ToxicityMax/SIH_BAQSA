@@ -115,7 +115,8 @@ export class TransferService {
     t.prevOwner = transfer.prevOwner._id.toString();
     t.latitude = approveTransfer.latitude;
     t.longitude = approveTransfer.longitude;
-
+    console.log(t);
+    console.log(JSON.stringify(t));
     await insertNewEntry(
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore

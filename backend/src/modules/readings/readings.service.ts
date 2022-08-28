@@ -26,10 +26,11 @@ export class ReadingsService {
     throw new HttpException('Success', 200);
   }
 
-  async createSugar(data: RSUGAR, orderId) {
+  async createSugar(data, orderId) {
     const order = await this.orderService.findByDevice(orderId);
     if (!order) throw new HttpException('Order not found', 404);
     await insertNewEntry(orderId, BlockchainTypes.RSUGAR, JSON.stringify(data));
+    throw new HttpException('Success', 200);
   }
 
   async createRFactory(data: RFACTORY, orderId) {
@@ -40,5 +41,6 @@ export class ReadingsService {
       BlockchainTypes.RFACTORY,
       JSON.stringify(data),
     );
+    throw new HttpException('Success', 200);
   }
 }
