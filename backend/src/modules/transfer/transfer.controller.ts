@@ -19,7 +19,8 @@ import { ApiSecurity, ApiTags } from '@nestjs/swagger';
 import { UserGuard } from '../../guards/user.guard';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { diskStorage } from 'multer';
-import crypto from 'crypto';
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const crypto = require('crypto');
 import path from 'path';
 
 @ApiTags('transfer')
@@ -158,12 +159,6 @@ export class TransferController {
 export class OrderTransferController {
   constructor(private readonly transferService: TransferService) {}
 
-  @Get('/:orderId/transfer-request')
-  @UseGuards(UserGuard)
-  @ApiSecurity('x-access-token', ['x-access-token'])
-  isTransferApproved(@Param('orderId') orderId: string, @Req() request) {
-    return this.transferService.checkForTransfer(orderId, request.user);
-  }
   @Get('/is-initiated/:orderId')
   @UseGuards(UserGuard)
   @ApiSecurity('x-access-token', ['x-access-token'])

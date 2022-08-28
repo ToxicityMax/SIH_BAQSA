@@ -14,9 +14,11 @@ export interface User extends Document {
   createdAt: string;
   updatedAt: string;
 }
+
 export enum UserRole {
   FARMER = 'FARMER',
-  RETAILER = 'RETAILER',
+  MIDDLEMEN = 'MIDDLEMAN',
+  AUTHORIZED = 'AUTHORIZED',
 }
 export const UserEntity = new mongoose.Schema(
   {

@@ -24,11 +24,11 @@ export class AuthController {
 
   @Get('/roles')
   async authRoles() {
-    return this.authService.roles();
+    return UserRole;
   }
 
   @Post('/signup')
-  async seller_signup(@Body(ValidationPipe) createAuthDto: UserDTO) {
+  async signup(@Body(ValidationPipe) createAuthDto: UserDTO) {
     await this.authService.create(createAuthDto);
     throw new HttpException('Success', 200);
   }

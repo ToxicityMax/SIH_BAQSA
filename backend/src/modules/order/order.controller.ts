@@ -15,24 +15,28 @@ import { OrderService } from './order.service';
 import { CreateOrderDto } from './dto/create-order.dto';
 import { ApiSecurity, ApiTags } from '@nestjs/swagger';
 import { UserGuard } from '../../guards/user.guard';
-import crypto from 'crypto';
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const crypto = require('crypto');
 import * as path from 'path';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { diskStorage } from 'multer';
+import { ProductsDefaultValues } from './order.constant';
 
 @ApiTags('order')
 @Controller('order')
 export class OrderController {
   constructor(private readonly orderService: OrderService) {}
 
+  @Get('/timeline/:id')
+  timeline(@Param('id') id: string) {
+    return this.orderService.timeline(id);
+  }
+
   @Get('/products')
   orderProducts() {
-    return this.orderService.orderProducts();
+    return ProductsDefaultValues;
   }
-  @Get('test')
-  test() {
-    return 'hello';
-  }
+
   @Post()
   @UseGuards(UserGuard)
   @ApiSecurity('x-access-token', ['x-access-token'])
@@ -112,11 +116,11 @@ export class OrderController {
   // ) {
   //   return this.orderService.update(id, updateOrderDto);
   // }
-
-  @Delete(':id')
-  @UseGuards(UserGuard)
-  @ApiSecurity('x-access-token', ['x-access-token'])
-  remove(@Param('id') id: string, @Req() request) {
-    return this.orderService.remove(id, request.user);
-  }
+  //
+  // @Delete(':id')
+  // @UseGuards(UserGuard)
+  // @ApiSecurity('x-access-token', ['x-access-token'])
+  // remove(@Param('id') id: string, @Req() request) {
+  //   return this.orderService.remove(id, request.user);
+  // }
 }

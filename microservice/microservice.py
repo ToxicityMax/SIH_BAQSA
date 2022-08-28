@@ -112,9 +112,9 @@ class MqttClient:
         payload = msg.payload.decode('utf-8')
         payload = json.loads(payload)
 
-        temperature = float(payload.get('temperature', None))
-        humidity = float(payload.get('humidity', None))
-        alcohol = float(payload.get('alcohol', 170))
+        temperature = int(payload.get('temperature', None))
+        humidity = int(payload.get('humidity', None))
+        alcohol = int(payload.get('alcohol', 170))
         # x_axis = float(payload.get('x-axis', None))
         # y_axis = float(payload.get('y-axis', None))
         # z_axis = float(payload.get('z-axis', None))

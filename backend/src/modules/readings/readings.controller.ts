@@ -1,7 +1,7 @@
 import { Controller, Get, Post, Body, Param } from '@nestjs/common';
 import { ReadingsService } from './readings.service';
 import { ApiTags } from '@nestjs/swagger';
-import { Reading } from './reading.entity';
+import { Reading, RFACTORY, RSUGAR } from './reading.entity';
 
 @Controller('readings')
 @ApiTags('readings')
@@ -11,6 +11,14 @@ export class ReadingsController {
   @Post()
   create(@Body() readingData: Reading) {
     return this.readingsService.create(readingData);
+  }
+  @Post('/RSUGAR/:id')
+  createSugar(@Param('id') id: string, @Body() data: RSUGAR) {
+    return this.readingsService.createSugar(data, id);
+  }
+  @Post('/RFACTORY/:id')
+  createFactory(@Param('id') id: string, @Body() data: RFACTORY) {
+    return this.readingsService.createRFactory(data, id);
   }
 }
 

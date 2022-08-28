@@ -27,7 +27,7 @@ const char *MQTT_SERVER = "mosquitto.ssrivastava.tech";
 const int MQTT_PORT = 1883;
 const char *MQTT_USERNAME = "sih";
 const char *MQTT_PASSWORD = "admin";
-const String DEVICE_ID = "abcd1234";
+const String DEVICE_ID = "abcd123456";
 
 WiFiClient espClient;
 PubSubClient client(espClient);
@@ -125,13 +125,14 @@ void loop() {
   DateTime now = rtc.now();
   std::pair<float, float> readings = getReadings();
   int alcohol = analogRead(mq3);
+  int sensorVoltage = alcohol/1024*5.0;
   String data = String(now.unixtime());
   data += ", ";
   data += String(readings.first);
   data += ", ";
   data += String(readings.second);
   data += ", ";
-  data += String(alcohol);
+  data += String(sensorVoltage);
   Serial.println(data);
   mqtt_publish(readings, now.unixtime(), alcohol);
   // File data_file = SD.open("filename.txt", FILE_WRITE);

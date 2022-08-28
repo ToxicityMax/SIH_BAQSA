@@ -1,12 +1,17 @@
 import { HttpException, Injectable } from '@nestjs/common';
-import { approveTransferDto, TransferDto } from './dto/transfer.dto';
+import {
+  approveTransferDto,
+  TransferBC,
+  TransferDto,
+} from './dto/transfer.dto';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { AuthService } from '../auth/auth.service';
 import { OrderService } from '../order/order.service';
 import { Transfer, TransferStatus } from './transfer.entity';
 import { Order } from '../order/order.entity';
-import { contractWithWallet } from '../../common/bc';
+import { contractWithWallet, insertNewEntry } from '../../common/bc';
+import { BlockchainTypes } from '../../common/blockchainTypes';
 
 @Injectable()
 export class TransferService {
@@ -45,30 +50,7 @@ export class TransferService {
       throw new HttpException('Transfer rejected', 400);
     else throw new HttpException('Transfer not approved', 400);
   }
-
-  async checkForTransfer(orderId: string, user) {
-    const order: Order = await this.orderService.findOne(orderId);
-    if (!order) throw new HttpException('Order not found', 404);
-    if (order.currentOwner.toString() != user.id.toString())
-      throw new HttpException('Not your order', 401);
-    // todo -> solution for pending initiated transfers
-    const transfer = await this.transfer
-      .findOne({
-        order: orderId,
-        status: TransferStatus.INITIATED,
-      })
-      .sort({
-        createdAt: -1,
-      })
-      .populate('owner')
-      .populate('prevOwner');
-    if (!transfer) throw new HttpException('No transfer found', 404);
-    return {
-      transferId: transfer._id,
-      requestedBy: transfer.owner,
-      orderId: orderId,
-    };
-  }
+  //TODO
   async checkForTransferInitiated(orderId: string, user) {
     const order: Order = await this.orderService.findOne(orderId);
     if (!order) throw new HttpException('Order not found', 404);
@@ -110,22 +92,37 @@ export class TransferService {
     transfer.status = TransferStatus.APPROVED;
     transfer.approvedAt = new Date();
     await transfer.save();
+
     await this.orderService.updateOwner(
-      transfer.order['_id'],
-      transfer.owner['_id'],
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
+      transfer.order._id.toString(),
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
+      transfer.owner._id.toString(),
     );
-    try {
-      const _transferOrder = await contractWithWallet.transferOrder(
-        transfer.order['_id'],
-        transfer.owner['_id'],
-        approveTransfer.latitude,
-        approveTransfer.longitude,
-        Date.now(),
-      );
-      _transferOrder.wait();
-    } catch (e) {
-      throw new HttpException(e, 400);
-    }
+    const t = new TransferBC();
+    t.review = {
+      rating: transfer.review.rating,
+      imageUrl: transfer.review.imageUrl,
+      message: transfer.review.message,
+    };
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    t.owner = transfer.owner._id.toString();
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    t.prevOwner = transfer.prevOwner._id.toString();
+    t.latitude = approveTransfer.latitude;
+    t.longitude = approveTransfer.longitude;
+
+    await insertNewEntry(
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
+      transfer.order._id,
+      BlockchainTypes.CREATION,
+      JSON.stringify(t),
+    );
 
     throw new HttpException('Success', 200);
   }

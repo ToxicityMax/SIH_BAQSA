@@ -6,7 +6,8 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Order } from './order.entity';
 import { AuthService } from '../auth/auth.service';
 import { ProductsDefaultValues } from './order.constant';
-import { contractWithWallet } from '../../common/bc';
+import { contractWithWallet, getOrderDetails } from '../../common/bc';
+import { BlockchainTypes } from '../../common/blockchainTypes';
 
 @Injectable()
 export class OrderService {
@@ -15,20 +16,34 @@ export class OrderService {
     private readonly userService: AuthService,
   ) {}
 
-  orderProducts() {
-    return ProductsDefaultValues;
+  timeline(id: string) {
+    return getOrderDetails(id);
   }
 
-  async create(createOrderDto: CreateOrderDto, user) {
+  async create(createOrderDto, user) {
+    console.log(createOrderDto);
+    createOrderDto.threshold = JSON.parse(createOrderDto.threshold);
     const newOrder = new this.order(createOrderDto);
     newOrder.createdBy = user.id;
     newOrder.deviceId = await this.getNewDeviceId();
     newOrder.currentOwner = user.id;
+
     await newOrder.save();
     return {
       orderId: newOrder._id,
-      timestamp: newOrder.createdAt,
-      deviceId: newOrder.deviceId,
+      schema: BlockchainTypes.CREATION,
+      data: JSON.stringify({
+        name: newOrder.name,
+        orderId: newOrder._id,
+        createdBy: user.id,
+        createdAt: newOrder.createdAt,
+        imageUrl: newOrder.imageUrl,
+        product: newOrder.product,
+        threshold: newOrder.threshold,
+        deviceId: newOrder.deviceId,
+        latitude: createOrderDto.latitude,
+        longitude: createOrderDto.longitude,
+      }),
     };
   }
 

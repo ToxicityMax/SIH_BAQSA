@@ -27,7 +27,8 @@ export const OrderEntity = new mongoose.Schema(
     threshold: {
       temperature: { type: Array },
       humidity: { type: Array },
-      accelerometer: { type: Array },
+      npk: { type: Array },
+      alcohol: { type: Array },
     },
     imageUrl: { type: String, default: '' },
     deviceId: { type: String, default: '' },

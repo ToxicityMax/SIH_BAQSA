@@ -11,6 +11,7 @@ export interface Transfer extends Document {
   review: {
     rating: number;
     message: string;
+    imageUrl: string;
   };
   status: string;
   approvedAt: Date;
@@ -33,10 +34,10 @@ export const TransferEntity = new mongoose.Schema(
     order: { type: mongoose.Schema.Types.ObjectId, ref: 'Order' },
     prevOwner: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
     owner: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
-    imageUrl: { type: String },
     review: {
       rating: { type: Number, min: 0, max: 5 },
       message: { type: String },
+      imageUrl: { type: String },
     },
     status: {
       type: String,

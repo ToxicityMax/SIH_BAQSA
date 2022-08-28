@@ -19,6 +19,7 @@ export class AuthService {
     await newAccount.save();
     return true;
   }
+
   async mobileLogin(mobileLoginDto: MobileLoginDto) {
     const user: User = await this.user.findOne({
       username: mobileLoginDto.username,
@@ -41,6 +42,7 @@ export class AuthService {
       },
     };
   }
+
   async login(loginDto: UserLoginDto) {
     const user: User = await this.user.findOne({ username: loginDto.username });
     if (!user) throw new HttpException('User not registered', 400);
@@ -87,9 +89,7 @@ export class AuthService {
     });
     return { jwtToken: jwtToken, user: user };
   }
-  async roles() {
-    return UserRole;
-  }
+
   createToken(payload) {
     return jwt.sign(payload, config.SECRET, { expiresIn: '10d' });
   }
@@ -112,6 +112,7 @@ export class AuthService {
     const exists = await this.user.findOne({ username: username }, 'username');
     return !!exists;
   }
+
   async userInfo() {
     const users = await this.user.find({});
     const result = {};
